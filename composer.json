@@ -1,0 +1,56 @@
+{
+    "name": "malios/ast2zephir",
+    "description": "Generate Zephir code from PHP Abstract Syntax Tree",
+    "type": "library",
+    "keywords": [
+        "php",
+        "zephir",
+        "ast",
+        "abstract syntax tree",
+        "php extension"
+    ],
+    "authors": [
+        {
+            "name": "Mehmed Aliosman",
+            "email": "dev.mehmed.aliosman@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7",
+        "nikic/php-parser": "^3.1"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Malios\\Ast2Zephir\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Malios\\Ast2Zephir\\Test\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": [
+            "@phpunit",
+            "@phpstan",
+            "@test-coverage"
+        ],
+        "phpunit": "phpunit tests/ colors=always",
+        "phpstan": "phpstan analyse src/ -l 5",
+        "test-coverage": [
+            "phpunit --coverage-clover test-reports/clover.xml",
+            "php test-reports/coverage-checker.php test-reports/clover.xml 95"
+        ],
+        "show-coverage": [
+            "phpunit --coverage-html test-reports/",
+            "xdg-open file://${PWD}/test-reports/index.html"
+        ]
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^3.3",
+        "phpstan/phpstan": "^0.8.3",
+        "phpunit/phpunit": "6.2"
+    }
+}
