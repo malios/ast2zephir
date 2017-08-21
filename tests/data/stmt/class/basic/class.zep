@@ -1,0 +1,5 @@
+namespace Malios;
+
+class Foo
+{
+}
