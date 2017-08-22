@@ -62,10 +62,12 @@ final class Class_ extends Generator
     private function parseStatements(Node ...$stmts): string
     {
         $code = '';
+        $last = count($stmts) - 1;
+        $prev = null;
         foreach ($stmts as $index => $stmt) {
             $generator = $this->finder->find($stmt->getType());
             $code .= $generator->generateCode($stmt);
-            if ($index !== (count($stmts) - 1)) {
+            if ($index !== $last) {
                 $code .= PHP_EOL;
             }
         }
