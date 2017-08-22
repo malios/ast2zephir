@@ -4,12 +4,17 @@ namespace Malios\Ast2Zephir\Generator;
 
 use Malios\Ast2Zephir\Generator\Exception\WrongGeneratorException;
 use PhpParser\Node;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
-abstract class Generator
+abstract class Generator implements LoggerAwareInterface
 {
     const INDENTATION = '    ';
 
     protected $finder;
+
+    /** @var LoggerInterface */
+    protected $logger;
 
     public function __construct(Finder $finder)
     {
@@ -34,6 +39,15 @@ abstract class Generator
         }
 
         return $this->doGenerateCode($node);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @see LoggerAwareInterface::setLogger()
+     */
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
     }
 
     /**

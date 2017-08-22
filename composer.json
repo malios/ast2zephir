@@ -18,7 +18,8 @@
     "license": "MIT",
     "require": {
         "php": "^7",
-        "nikic/php-parser": "^3.1"
+        "nikic/php-parser": "^3.1",
+        "psr/log": "^1.0"
     },
     "minimum-stability": "dev",
     "autoload": {

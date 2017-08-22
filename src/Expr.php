@@ -8,4 +8,5 @@ abstract class Expr
     const ARRAY = 'Expr_Array';
     const ARRAY_ITEM = 'Expr_ArrayItem';
     const CONST_FETCH = 'Expr_ConstFetch';
+    const PROPERTY_FETCH = 'Expr_PropertyFetch';
 }
