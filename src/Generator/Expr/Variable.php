@@ -1,12 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Malios\Ast2Zephir\Generator\Stmt;
+namespace Malios\Ast2Zephir\Generator\Expr;
 
+use Malios\Ast2Zephir\Expr;
 use Malios\Ast2Zephir\Generator\Generator;
-use Malios\Ast2Zephir\Stmt;
 use PhpParser\Node;
+use PhpParser\Node\Expr\Variable as ExprVariable;
 
-final class Return_ extends Generator
+final class Variable extends Generator
 {
     /**
      * {@inheritdoc}
@@ -14,17 +15,16 @@ final class Return_ extends Generator
      */
     protected function canGenerateCode(Node $node): bool
     {
-        return $node->getType() === Stmt::RETURN;
+        return $node->getType() === Expr::VARIABLE;
     }
 
     /**
      * {@inheritdoc}
      * @see Generator::doGenerateCode()
-     * @param Node\Stmt\Return_ $node
+     * @param ExprVariable $node
      */
     protected function doGenerateCode($node): string
     {
-        $next = $this->finder->find($node->expr->getType());
-        return 'return ' . $next->generateCode($node->expr);
+        return $node->name;
     }
 }

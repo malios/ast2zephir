@@ -6,7 +6,13 @@ class Math
 {
     private $answer = 42;
 
-    public final function sum($a, $b)
+    public static function sum(float $a, float $b) : float
+    {
+        $result = $a + $b;
+        return $result;
+    }
+
+    public final function getAnswer()
     {
         return $this->answer;
     }

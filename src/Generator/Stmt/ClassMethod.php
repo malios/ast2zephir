@@ -2,8 +2,9 @@
 
 namespace Malios\Ast2Zephir\Generator\Stmt;
 
+use Malios\Ast2Zephir\Expr;
 use Malios\Ast2Zephir\Generator\Generator;
-use Malios\Ast2Zephir\Modifiers;
+use Malios\Ast2Zephir\Generator\Modifiers;
 use Malios\Ast2Zephir\Stmt;
 use PhpParser\Node;
 use PhpParser\Node\Param;
@@ -60,15 +61,32 @@ final class ClassMethod extends Generator
     private function parseStatements(Node ...$stmts)
     {
         $code = '';
+        $variables = $this->getVariablesToAssign(...$stmts);
+        if (!empty($variables)) {
+            $code = 'var ' . join(', ', $variables) . ';' . PHP_EOL;
+        }
+
         $last = count($stmts) - 1;
         foreach ($stmts as $index => $stmt) {
             $generator = $this->finder->find($stmt->getType());
-            $code .= $generator->generateCode($stmt);
+            $code .= $generator->generateCode($stmt) . ';';
             if ($index !== $last) {
                 $code .= PHP_EOL;
             }
         }
 
         return $code;
+    }
+
+    private function getVariablesToAssign(Node ...$stmts) : array
+    {
+        $variables = [];
+        foreach ($stmts as $stmt) {
+            if ($stmt->getType() === Expr::ASSIGN && $stmt->var->getType() === Expr::VARIABLE) {
+                $variables[] = $stmt->var->name;
+            }
+        }
+
+        return array_unique($variables);
     }
 }
