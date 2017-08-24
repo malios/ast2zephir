@@ -2,4 +2,4 @@
 
 namespace Malios\Ast2Zephir\Generator\Exception;
 
-class WrongGeneratorException extends \Exception {}
+class WrongGeneratorException extends GeneratorException {}

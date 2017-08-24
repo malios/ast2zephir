@@ -3,11 +3,14 @@
 namespace Malios\Ast2Zephir\Generator\Stmt;
 
 use Malios\Ast2Zephir\Generator\Generator;
+use Malios\Ast2Zephir\Generator\Modifiers;
 use Malios\Ast2Zephir\Stmt;
 use PhpParser\Node;
 
 final class Class_ extends Generator
 {
+    use Modifiers;
+
     /**
      * {@inheritdoc}
      * @see Generator::canGenerateCode()
@@ -24,7 +27,7 @@ final class Class_ extends Generator
      */
     protected function doGenerateCode($node): string
     {
-        $code = ltrim($this->getModifier($node) . ' class ' . $node->name);
+        $code = ltrim($this->getModifiers($node) . ' class ' . $node->name);
         if ($node->extends !== null) {
             $code .= ' extends ' . join('\\', $node->extends->parts);
         }
@@ -44,19 +47,6 @@ final class Class_ extends Generator
         }
 
         return $code . '}';
-    }
-
-    private function getModifier(Node\Stmt\Class_ $class): string
-    {
-        if ($class->isAbstract()) {
-            return 'abstract';
-        }
-
-        if ($class->isFinal()) {
-            return 'final';
-        }
-
-        return '';
     }
 
     private function parseStatements(Node ...$stmts): string

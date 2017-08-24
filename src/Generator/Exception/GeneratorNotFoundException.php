@@ -2,4 +2,4 @@
 
 namespace Malios\Ast2Zephir\Generator\Exception;
 
-class GeneratorNotFoundException extends \Exception {}
+class GeneratorNotFoundException extends GeneratorException {}

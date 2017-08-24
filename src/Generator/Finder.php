@@ -7,8 +7,10 @@ use Malios\Ast2Zephir\Generator\Exception\GeneratorNotFoundException;
 use Malios\Ast2Zephir\Generator\Expr\Array_;
 use Malios\Ast2Zephir\Generator\Expr\ArrayItem;
 use Malios\Ast2Zephir\Generator\Expr\Assign;
+use Malios\Ast2Zephir\Generator\Expr\BinaryOp;
 use Malios\Ast2Zephir\Generator\Expr\ConstFetch;
 use Malios\Ast2Zephir\Generator\Expr\PropertyFetch;
+use Malios\Ast2Zephir\Generator\Expr\Variable;
 use Malios\Ast2Zephir\Generator\Scalar\DNumber;
 use Malios\Ast2Zephir\Generator\Scalar\LNumber;
 use Malios\Ast2Zephir\Generator\Scalar\String_;
@@ -39,6 +41,20 @@ class Finder
         Expr::ARRAY_ITEM => ArrayItem::class,
         Expr::CONST_FETCH => ConstFetch::class,
         Expr::PROPERTY_FETCH => PropertyFetch::class,
+        Expr::BINARY_OP_PLUS => BinaryOp::class,
+        Expr::BINARY_OP_MINUS => BinaryOp::class,
+        Expr::BINARY_OP_MULTIPLY => BinaryOp::class,
+        Expr::BINARY_OP_DIVIDE => BinaryOp::class,
+        Expr::BINARY_OP_EQUAL => BinaryOp::class,
+        Expr::BINARY_OP_NOT_EQUAL => BinaryOp::class,
+        Expr::BINARY_OP_IDENTICAL => BinaryOp::class,
+        Expr::BINARY_OP_NOT_IDENTICAL => BinaryOp::class,
+        Expr::BINARY_OP_CONCAT => BinaryOp::class,
+        Expr::BINARY_OP_GREATER => BinaryOp::class,
+        Expr::BINARY_OP_GREATER_OR_EQUAL => BinaryOp::class,
+        Expr::BINARY_OP_SMALLER => BinaryOp::class,
+        Expr::BINARY_OP_SMALLER_OR_EQUAL => BinaryOp::class,
+        Expr::VARIABLE => Variable::class,
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,
