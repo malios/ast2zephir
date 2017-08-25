@@ -23,5 +23,17 @@ abstract class Expr
     const BINARY_OP_GREATER_OR_EQUAL = 'Expr_BinaryOp_GreaterOrEqual';
     const BINARY_OP_SMALLER = 'Expr_BinaryOp_Smaller';
     const BINARY_OP_SMALLER_OR_EQUAL = 'Expr_BinaryOp_SmallerOrEqual';
+    const BINARY_OP_POW = 'Expr_BinaryOp_Pow';
+    const BINARY_OP_MODULUS = 'Expr_BinaryOp_Mod';
+    const BINARY_OP_BITWISE_AND = 'Expr_BinaryOp_BitwiseAnd';
+    const BINARY_OP_BITWISE_OR = 'Expr_BinaryOp_BitwiseOr';
+    const BINARY_OP_BITWISE_XOR = 'Expr_BinaryOp_BitwiseXor';
+    const BINARY_OP_BOOLEAN_AND = 'Expr_BinaryOp_BooleanAnd';
+    const BINARY_OP_BOOLEAN_OR = 'Expr_BinaryOp_BooleanOr';
+    const BINARY_OP_LOGICAL_AND = 'Expr_BinaryOp_LogicalAnd';
+    const BINARY_OP_LOGICAL_OR = 'Expr_BinaryOp_LogicalOr';
+    const BINARY_OP_LOGICAL_XOR = 'Expr_BinaryOp_LogicalXor';
+    const BINARY_OP_SHIFT_LEFT = 'Expr_BinaryOp_ShiftLeft';
+    const BINARY_OP_SHIFT_RIGHT = 'Expr_BinaryOp_ShiftRight';
     const VARIABLE = 'Expr_Variable';
 }
