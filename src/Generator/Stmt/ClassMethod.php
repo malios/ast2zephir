@@ -5,6 +5,7 @@ namespace Malios\Ast2Zephir\Generator\Stmt;
 use Malios\Ast2Zephir\Expr;
 use Malios\Ast2Zephir\Generator\Generator;
 use Malios\Ast2Zephir\Generator\Modifiers;
+use Malios\Ast2Zephir\Generator\ReturnType;
 use Malios\Ast2Zephir\Stmt;
 use PhpParser\Node;
 use PhpParser\Node\Param;
@@ -12,6 +13,7 @@ use PhpParser\Node\Param;
 final class ClassMethod extends Generator
 {
     use Modifiers;
+    use ReturnType;
 
     /**
      * {@inheritdoc}
@@ -38,7 +40,13 @@ final class ClassMethod extends Generator
             $code .= $this->parseParams(...$node->params);
         }
 
-        $code .= ')' . PHP_EOL . '{';
+        $code .= ')';
+        $returnType = $this->getReturnTypeDeclaration($node);
+        if (!empty($returnType)) {
+            $code .= ' ' . $returnType;
+        }
+
+        $code .= PHP_EOL . '{';
         if (!empty($node->stmts)) {
             $parsedStatements = $this->parseStatements(...$node->stmts);
             $code .= PHP_EOL . $this->indent($parsedStatements) . PHP_EOL;
