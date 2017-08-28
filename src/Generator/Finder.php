@@ -9,19 +9,28 @@ use Malios\Ast2Zephir\Generator\Expr\ArrayItem;
 use Malios\Ast2Zephir\Generator\Expr\Assign;
 use Malios\Ast2Zephir\Generator\Expr\BinaryOp;
 use Malios\Ast2Zephir\Generator\Expr\ConstFetch;
+use Malios\Ast2Zephir\Generator\Expr\Print_;
 use Malios\Ast2Zephir\Generator\Expr\PropertyFetch;
+use Malios\Ast2Zephir\Generator\Expr\Ternary;
 use Malios\Ast2Zephir\Generator\Expr\Variable;
 use Malios\Ast2Zephir\Generator\Scalar\DNumber;
 use Malios\Ast2Zephir\Generator\Scalar\LNumber;
 use Malios\Ast2Zephir\Generator\Scalar\String_;
+use Malios\Ast2Zephir\Generator\Stmt\Break_;
 use Malios\Ast2Zephir\Generator\Stmt\Class_;
 use Malios\Ast2Zephir\Generator\Stmt\ClassConst;
 use Malios\Ast2Zephir\Generator\Stmt\ClassMethod;
+use Malios\Ast2Zephir\Generator\Stmt\Echo_;
+use Malios\Ast2Zephir\Generator\Stmt\Else_;
+use Malios\Ast2Zephir\Generator\Stmt\ElseIf_;
+use Malios\Ast2Zephir\Generator\Stmt\Foreach_;
 use Malios\Ast2Zephir\Generator\Stmt\GroupUse;
+use Malios\Ast2Zephir\Generator\Stmt\If_;
 use Malios\Ast2Zephir\Generator\Stmt\Namespace_;
 use Malios\Ast2Zephir\Generator\Stmt\Property;
 use Malios\Ast2Zephir\Generator\Stmt\PropertyProperty;
 use Malios\Ast2Zephir\Generator\Stmt\Return_;
+use Malios\Ast2Zephir\Generator\Stmt\Switch_;
 use Malios\Ast2Zephir\Generator\Stmt\Use_;
 use Malios\Ast2Zephir\Generator\Stmt\UseUse;
 use Malios\Ast2Zephir\Logger\EchoLogger;
@@ -67,6 +76,8 @@ class Finder
         Expr::BINARY_OP_SHIFT_LEFT => BinaryOp::class,
         Expr::BINARY_OP_SHIFT_RIGHT => BinaryOp::class,
         Expr::VARIABLE => Variable::class,
+        Expr::TERNARY => Ternary::class,
+        Expr::PRINT => Print_::class,
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,
@@ -75,12 +86,20 @@ class Finder
         Stmt::USE_USE => UseUse::class,
         Stmt::GROUP_USE => GroupUse::class,
         Stmt::DECLARE => Noop::class,
+        Stmt::NOP => Noop::class,
         Stmt::CLASS_ => Class_::class,
         Stmt::CLASS_METHOD => ClassMethod::class,
         Stmt::CLASS_CONST => ClassConst::class,
         Stmt::PROPERTY => Property::class,
         Stmt::PROPERTY_PROPERTY => PropertyProperty::class,
         Stmt::RETURN => Return_::class,
+        Stmt::IF => If_::class,
+        Stmt::ELSE => Else_::class,
+        Stmt::ELSEIF => ElseIf_::class,
+        Stmt::SWITCH => Switch_::class,
+        Stmt::BREAK => Break_::class,
+        Stmt::ECHO => Echo_::class,
+        Stmt::FOREACH => Foreach_::class,
         'Const' => Const_::class,
         'Param' => Param::class,
     ];

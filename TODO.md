@@ -26,10 +26,10 @@
 
 #### Types
 
-- Primitive type hints
-- Class\Interface type hints
-- Primitive return types
-- Class\Interface return types
+- ~~Primitive type hints~~
+- ~~Class\Interface type hints~~
+- ~~Primitive return types~~
+- ~~Class\Interface return types~~
 - Void return type from annotations
 - Primitive type hints from annotations
 - Class\Interface type hints from annotations
@@ -40,3 +40,52 @@
 
 - Support for inline html (workaround)
 - Support for traits (workaround)
+
+
+#### conditional
+
+- ~~if/elseif/else~~
+- ~~switch~~
+- ~~ternary~~
+
+
+#### loops
+- for
+- foreach
+- while
+- do while
+
+#### oop
+- method call
+- interfaces
+- traits
+
+#### other
+- function call
+- regex
+- goto
+- exceptions (throw/catch/finally)
+
+#### improvements
+- comments
+- keep empty lines
+
+
+#### compatibility (with zephir)
+
+- Given the following code:
+
+```Zephir
+public function test(): bool
+{
+    if a < b {
+        return true;
+    } else {
+        return false;
+    }
+}
+```
+
+Zephir compiler will throw error "Reached end of the method without returning a valid type specified in the return-type hints in...".
+We need a way to check for this kind of stuff in PHP.
+

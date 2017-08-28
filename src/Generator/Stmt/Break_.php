@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Malios\Ast2Zephir\Generator\Scalar;
+namespace Malios\Ast2Zephir\Generator\Stmt;
 
 use Malios\Ast2Zephir\Generator\Generator;
-use Malios\Ast2Zephir\Scalar;
+use Malios\Ast2Zephir\Stmt;
 use PhpParser\Node;
 
-final class LNumber extends Generator
+final class Break_ extends Generator
 {
     /**
      * {@inheritdoc}
@@ -14,16 +14,17 @@ final class LNumber extends Generator
      */
     protected function canGenerateCode(Node $node): bool
     {
-        return $node->getType() === Scalar::LNUMBER;
+        return $node->getType() === Stmt::BREAK;
     }
 
     /**
      * {@inheritdoc}
      * @see Generator::doGenerateCode()
-     * @param \PhpParser\Node\Scalar\LNumber $node
+     * @param Node\Stmt\Break_ $node
      */
     protected function doGenerateCode($node): string
     {
-        return (string) $node->value;
+        // todo: support for break argument. e.g. break 2; - breaks 2 nested loops
+        return 'break';
     }
 }

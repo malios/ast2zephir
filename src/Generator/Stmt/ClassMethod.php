@@ -5,15 +5,19 @@ namespace Malios\Ast2Zephir\Generator\Stmt;
 use Malios\Ast2Zephir\Expr;
 use Malios\Ast2Zephir\Generator\Generator;
 use Malios\Ast2Zephir\Generator\Modifiers;
+use Malios\Ast2Zephir\Generator\ParseStatements;
 use Malios\Ast2Zephir\Generator\ReturnType;
 use Malios\Ast2Zephir\Stmt;
 use PhpParser\Node;
+use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Param;
+use PhpParser\Node\Stmt\Switch_;
 
 final class ClassMethod extends Generator
 {
     use Modifiers;
     use ReturnType;
+    use ParseStatements;
 
     /**
      * {@inheritdoc}
@@ -46,10 +50,10 @@ final class ClassMethod extends Generator
             $code .= ' ' . $returnType;
         }
 
-        $code .= PHP_EOL . '{';
+        $code .= PHP_EOL . '{' . PHP_EOL;
         if (!empty($node->stmts)) {
-            $parsedStatements = $this->parseStatements(...$node->stmts);
-            $code .= PHP_EOL . $this->indent($parsedStatements) . PHP_EOL;
+            $parsedStatements = $this->parseMethodStatements(...$node->stmts);
+            $code .= $this->indent($parsedStatements) . PHP_EOL;
         }
 
         $code .= '}';
@@ -66,7 +70,7 @@ final class ClassMethod extends Generator
         return join(', ', $paramsArray);
     }
 
-    private function parseStatements(Node ...$stmts)
+    private function parseMethodStatements(Node ...$stmts)
     {
         $code = '';
         $variables = $this->getVariablesToAssign(...$stmts);
@@ -74,24 +78,21 @@ final class ClassMethod extends Generator
             $code = 'var ' . join(', ', $variables) . ';' . PHP_EOL;
         }
 
-        $last = count($stmts) - 1;
-        foreach ($stmts as $index => $stmt) {
-            $generator = $this->finder->find($stmt->getType());
-            $code .= $generator->generateCode($stmt) . ';';
-            if ($index !== $last) {
-                $code .= PHP_EOL;
-            }
-        }
-
+        $code .= $this->parseStatements($this->finder, ...$stmts);
         return $code;
     }
 
     private function getVariablesToAssign(Node ...$stmts) : array
     {
         $variables = [];
+        /** @var Node|Assign|Switch_ $stmt */
         foreach ($stmts as $stmt) {
             if ($stmt->getType() === Expr::ASSIGN && $stmt->var->getType() === Expr::VARIABLE) {
                 $variables[] = $stmt->var->name;
+            }
+
+            if ($innerStatements = $stmt->stmts ?? $stmt->cases ?? false) {
+                $variables = $variables + $this->getVariablesToAssign(...$innerStatements);
             }
         }
 

@@ -56,7 +56,6 @@ final class Namespace_ extends Generator
         return $code;
     }
 
-
     private function isUse(Node $node = null)
     {
         if ($node === null) {
