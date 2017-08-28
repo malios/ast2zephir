@@ -27,7 +27,7 @@ final class BinaryOp
 
     public function divide($a, $b)
     {
-        return ($a / $b);
+        return $a / $b;
     }
 
     public function equal($a, $b): bool

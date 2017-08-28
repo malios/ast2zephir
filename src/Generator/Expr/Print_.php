@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Malios\Ast2Zephir\Generator\Scalar;
+namespace Malios\Ast2Zephir\Generator\Expr;
 
+use Malios\Ast2Zephir\Expr;
 use Malios\Ast2Zephir\Generator\Generator;
-use Malios\Ast2Zephir\Scalar;
 use PhpParser\Node;
 
-final class LNumber extends Generator
+final class Print_ extends Generator
 {
     /**
      * {@inheritdoc}
@@ -14,16 +14,18 @@ final class LNumber extends Generator
      */
     protected function canGenerateCode(Node $node): bool
     {
-        return $node->getType() === Scalar::LNUMBER;
+        return $node->getType() === Expr::PRINT;
     }
 
     /**
      * {@inheritdoc}
      * @see Generator::doGenerateCode()
-     * @param \PhpParser\Node\Scalar\LNumber $node
+     * @param Node\Expr\Print_ $node
      */
     protected function doGenerateCode($node): string
     {
-        return (string) $node->value;
+        $generator = $this->finder->find($node->expr->getType());
+        $code = 'echo ' . $generator->generateCode($node->expr);
+        return $code;
     }
 }

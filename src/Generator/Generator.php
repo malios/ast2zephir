@@ -16,6 +16,8 @@ abstract class Generator implements LoggerAwareInterface
     /** @var LoggerInterface */
     protected $logger;
 
+    protected $config = [];
+
     public function __construct(Finder $finder)
     {
         $this->finder = $finder;
@@ -51,6 +53,22 @@ abstract class Generator implements LoggerAwareInterface
     }
 
     /**
+     * Add generator specific config
+     *
+     * @param string $key
+     * @param $value
+     */
+    public function addConfig(string $key, $value)
+    {
+        $this->config[$key] = $value;
+    }
+
+    protected function getConfig(string $key)
+    {
+        return $this->config[$key] ?? null;
+    }
+
+    /**
      * Indent a block of code
      *
      * @param string $code
@@ -69,7 +87,7 @@ abstract class Generator implements LoggerAwareInterface
     }
 
     /**
-     * Get type of the node that the generator can generate code for
+     * Check if the generator can generate code for this node
      *
      * @param Node $node
      * @return bool

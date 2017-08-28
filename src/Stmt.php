@@ -15,4 +15,12 @@ abstract class Stmt
     const PROPERTY = 'Stmt_Property';
     const PROPERTY_PROPERTY = 'Stmt_PropertyProperty';
     const RETURN = 'Stmt_Return';
+    const IF = 'Stmt_If';
+    const ELSE = 'Stmt_Else';
+    const ELSEIF = 'Stmt_ElseIf';
+    const NOP = 'Stmt_Nop';
+    const SWITCH = 'Stmt_Switch';
+    const BREAK = 'Stmt_Break';
+    const ECHO = 'Stmt_Echo';
+    const FOREACH = 'Stmt_Foreach';
 }

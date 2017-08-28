@@ -17,7 +17,7 @@ final class BinaryOp extends Generator
      */
     protected function canGenerateCode(Node $node): bool
     {
-        return strpos($node->getType(), Expr::BINARY_OP) > -1;
+        return $this->isBinary($node);
     }
 
     /**
@@ -27,12 +27,24 @@ final class BinaryOp extends Generator
      */
     protected function doGenerateCode($node): string
     {
-        $code = '(';
+        $code = '';
+        // add parentheses for nested binary operations
+        if ($this->getConfig('parentheses')) {
+            $code .= '(';
+        }
+
         $leftGen = $this->finder->find($node->left->getType());
+        if ($this->isBinary($node->left)) {
+            $leftGen->addConfig('parentheses', true);
+        }
+
         $rightGen = $this->finder->find($node->right->getType());
+        if ($this->isBinary($node->right)) {
+            $rightGen->addConfig('parentheses', true);
+        }
+
         $left = $leftGen->generateCode($node->left);
         $right = $rightGen->generateCode($node->right);
-
         $op = $this->getOperator($node);
         if ($op === self::NOT_AVAILABLE) {
             $code .= $this->parseAlternative($node, $left, $right);
@@ -40,8 +52,15 @@ final class BinaryOp extends Generator
             $code .= $left . ' ' . $op . ' ' . $right;
         }
 
-        $code .= ')';
+        if ($this->getConfig('parentheses')) {
+            $code .= ')';
+        }
         return $code;
+    }
+
+    private function isBinary(Node $node): bool
+    {
+        return strpos($node->getType(), Expr::BINARY_OP) > -1;
     }
 
     private function getOperator(Node\Expr\BinaryOp $node): string
@@ -95,7 +114,7 @@ final class BinaryOp extends Generator
                 $code = sprintf('pow(%s, %s)', $left, $right);
                 break;
             default:
-                throw new GeneratorException(sprint("Alternative for %s not found", $node->getType()));
+                throw new GeneratorException(sprintf("Alternative for %s not found", $node->getType()));
         }
 
         return $code;

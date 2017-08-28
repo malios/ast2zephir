@@ -36,4 +36,6 @@ abstract class Expr
     const BINARY_OP_SHIFT_LEFT = 'Expr_BinaryOp_ShiftLeft';
     const BINARY_OP_SHIFT_RIGHT = 'Expr_BinaryOp_ShiftRight';
     const VARIABLE = 'Expr_Variable';
+    const TERNARY = 'Expr_Ternary';
+    const PRINT = 'Expr_Print';
 }
