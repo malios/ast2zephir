@@ -38,4 +38,5 @@ abstract class Expr
     const VARIABLE = 'Expr_Variable';
     const TERNARY = 'Expr_Ternary';
     const PRINT = 'Expr_Print';
+    const FUNC_CALL = 'Expr_FuncCall';
 }

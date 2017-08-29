@@ -7,7 +7,13 @@ class Loop
     public function printThese(array $numbers)
     {
         foreach ($numbers as $index => $number) {
-            echo $number . PHP_EOL;
+            echo 'numbers[' . $index . '] = '. $number . PHP_EOL;
         }
     }
+
+/*    public function printRange(int $start, int $end, array $additional = []) {
+        foreach (range($start, $end) + $additional as $number) {
+            print $number;
+        }
+    }*/
 }

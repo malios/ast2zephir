@@ -33,18 +33,9 @@ final class BinaryOp extends Generator
             $code .= '(';
         }
 
-        $leftGen = $this->finder->find($node->left->getType());
-        if ($this->isBinary($node->left)) {
-            $leftGen->addConfig('parentheses', true);
-        }
+        $left = $this->generateNext($node->left);
+        $right = $this->generateNext($node->right);
 
-        $rightGen = $this->finder->find($node->right->getType());
-        if ($this->isBinary($node->right)) {
-            $rightGen->addConfig('parentheses', true);
-        }
-
-        $left = $leftGen->generateCode($node->left);
-        $right = $rightGen->generateCode($node->right);
         $op = $this->getOperator($node);
         if ($op === self::NOT_AVAILABLE) {
             $code .= $this->parseAlternative($node, $left, $right);
@@ -118,5 +109,21 @@ final class BinaryOp extends Generator
         }
 
         return $code;
+    }
+
+    /**
+     * Generate code for the right or left of the binary expression
+     *
+     * @param Node $node
+     * @return string
+     */
+    private function generateNext(Node $node): string
+    {
+        $generator = $this->finder->find($node->getType());
+        if ($this->isBinary($node) && $node->getType() !== Expr::BINARY_OP_CONCAT) {
+            $generator->addConfig('parentheses', true);
+        }
+        $next = $generator->generateCode($node);
+        return $next;
     }
 }
