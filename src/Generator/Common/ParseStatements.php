@@ -1,7 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Malios\Ast2Zephir\Generator;
+namespace Malios\Ast2Zephir\Generator\Common;
 
+use Malios\Ast2Zephir\Generator\Finder;
 use Malios\Ast2Zephir\Stmt;
 use PhpParser\Node;
 

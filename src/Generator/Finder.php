@@ -9,6 +9,7 @@ use Malios\Ast2Zephir\Generator\Expr\ArrayItem;
 use Malios\Ast2Zephir\Generator\Expr\Assign;
 use Malios\Ast2Zephir\Generator\Expr\BinaryOp;
 use Malios\Ast2Zephir\Generator\Expr\ConstFetch;
+use Malios\Ast2Zephir\Generator\Expr\FuncCall;
 use Malios\Ast2Zephir\Generator\Expr\Print_;
 use Malios\Ast2Zephir\Generator\Expr\PropertyFetch;
 use Malios\Ast2Zephir\Generator\Expr\Ternary;
@@ -78,6 +79,7 @@ class Finder
         Expr::VARIABLE => Variable::class,
         Expr::TERNARY => Ternary::class,
         Expr::PRINT => Print_::class,
+        Expr::FUNC_CALL => FuncCall::class,
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,

@@ -4,9 +4,9 @@ namespace Malios\Ast2Zephir\Generator\Stmt;
 
 use Malios\Ast2Zephir\Expr;
 use Malios\Ast2Zephir\Generator\Generator;
-use Malios\Ast2Zephir\Generator\Modifiers;
-use Malios\Ast2Zephir\Generator\ParseStatements;
-use Malios\Ast2Zephir\Generator\ReturnType;
+use Malios\Ast2Zephir\Generator\Common\Modifiers;
+use Malios\Ast2Zephir\Generator\Common\ParseStatements;
+use Malios\Ast2Zephir\Generator\Common\ReturnType;
 use Malios\Ast2Zephir\Stmt;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Assign;
