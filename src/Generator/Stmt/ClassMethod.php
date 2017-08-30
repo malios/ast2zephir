@@ -11,7 +11,6 @@ use Malios\Ast2Zephir\Stmt;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Param;
-use PhpParser\Node\Stmt\Switch_;
 
 final class ClassMethod extends Generator
 {
@@ -73,7 +72,13 @@ final class ClassMethod extends Generator
     private function parseMethodStatements(Node ...$stmts)
     {
         $code = '';
-        $variables = $this->getVariablesToAssign(...$stmts);
+
+        $variables = [];
+        foreach ($stmts as $stmt) {
+            $variables = array_merge($variables, $this->getVariablesToAssign($stmt));
+        }
+
+        $variables = array_unique($variables);
         if (!empty($variables)) {
             $code = 'var ' . join(', ', $variables) . ';' . PHP_EOL;
         }
@@ -82,20 +87,40 @@ final class ClassMethod extends Generator
         return $code;
     }
 
-    private function getVariablesToAssign(Node ...$stmts) : array
+    private function getVariablesToAssign($node) : array
     {
         $variables = [];
-        /** @var Node|Assign|Switch_ $stmt */
-        foreach ($stmts as $stmt) {
-            if ($stmt->getType() === Expr::ASSIGN && $stmt->var->getType() === Expr::VARIABLE) {
-                $variables[] = $stmt->var->name;
+
+        // todo: use is_iterable with php 7.1
+        if (is_array($node)) {
+            foreach ($node as $elem) {
+                $variables = array_merge($variables, $this->getVariablesToAssign($elem));
             }
 
-            if ($innerStatements = $stmt->stmts ?? $stmt->cases ?? false) {
-                $variables = $variables + $this->getVariablesToAssign(...$innerStatements);
+            return $variables;
+        } elseif ($this->isVariableToAssign($node)) {
+            $variables[] = $node->var->name;
+        } elseif (!is_object($node)) {
+            return $variables;
+        }
+
+        foreach (get_object_vars($node) as $prop) {
+            if ($prop instanceof Node || is_array($prop)) {
+                $variables = array_merge($variables, $this->getVariablesToAssign($prop));
             }
         }
 
-        return array_unique($variables);
+        return $variables;
+    }
+
+    /**
+     * @param Node|Assign|mixed $node
+     * @return bool
+     */
+    private function isVariableToAssign($node)
+    {
+        return $node instanceof Node
+            && $node->getType() === Expr::ASSIGN
+            && $node->var->getType() === Expr::VARIABLE;
     }
 }

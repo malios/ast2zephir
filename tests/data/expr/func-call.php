@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace Malios;
+
 class Helper
 {
     public function joinOnSteroids(string $glue, array $arr)
