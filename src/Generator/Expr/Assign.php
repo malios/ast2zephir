@@ -28,7 +28,14 @@ final class Assign extends Generator
         $type = $node->expr->getType();
         $next = $this->finder->find($type);
         $value = $next->generateCode($node->expr);
+        $left = 'let ' . $node->var->name . ' = ';
 
-        return 'let ' . $node->var->name . ' = ' . $value;
+        if ($node->expr->getType() === Expr::FUNC_CALL) {
+            // kind of a hack to insert the assigning operation in the correct place
+            // @see FuncCall::doGenerateCode() for more info
+            return sprintf($value, $left);
+        }
+
+        return $left . $value;
     }
 }
