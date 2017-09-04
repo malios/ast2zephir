@@ -5,11 +5,14 @@ namespace Malios\Ast2Zephir\Generator;
 use Malios\Ast2Zephir\Expr;
 use Malios\Ast2Zephir\Generator\Exception\GeneratorNotFoundException;
 use Malios\Ast2Zephir\Generator\Expr\Array_;
+use Malios\Ast2Zephir\Generator\Expr\ArrayDimFetch;
 use Malios\Ast2Zephir\Generator\Expr\ArrayItem;
 use Malios\Ast2Zephir\Generator\Expr\Assign;
 use Malios\Ast2Zephir\Generator\Expr\BinaryOp;
 use Malios\Ast2Zephir\Generator\Expr\ConstFetch;
 use Malios\Ast2Zephir\Generator\Expr\FuncCall;
+use Malios\Ast2Zephir\Generator\Expr\PostDec;
+use Malios\Ast2Zephir\Generator\Expr\PostInc;
 use Malios\Ast2Zephir\Generator\Expr\Print_;
 use Malios\Ast2Zephir\Generator\Expr\PropertyFetch;
 use Malios\Ast2Zephir\Generator\Expr\Ternary;
@@ -24,6 +27,7 @@ use Malios\Ast2Zephir\Generator\Stmt\ClassMethod;
 use Malios\Ast2Zephir\Generator\Stmt\Echo_;
 use Malios\Ast2Zephir\Generator\Stmt\Else_;
 use Malios\Ast2Zephir\Generator\Stmt\ElseIf_;
+use Malios\Ast2Zephir\Generator\Stmt\For_;
 use Malios\Ast2Zephir\Generator\Stmt\Foreach_;
 use Malios\Ast2Zephir\Generator\Stmt\GroupUse;
 use Malios\Ast2Zephir\Generator\Stmt\If_;
@@ -80,6 +84,9 @@ class Finder
         Expr::TERNARY => Ternary::class,
         Expr::PRINT => Print_::class,
         Expr::FUNC_CALL => FuncCall::class,
+        Expr::ARRAY_DIM_FETCH => ArrayDimFetch::class,
+        Expr::POST_INC => PostInc::class,
+        Expr::POST_DEC => PostDec::class,
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,
@@ -102,6 +109,7 @@ class Finder
         Stmt::BREAK => Break_::class,
         Stmt::ECHO => Echo_::class,
         Stmt::FOREACH => Foreach_::class,
+        Stmt::FOR => For_::class,
         'Const' => Const_::class,
         'Param' => Param::class,
     ];

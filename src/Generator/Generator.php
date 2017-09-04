@@ -27,10 +27,11 @@ abstract class Generator implements LoggerAwareInterface
      * Generate code from AST node
      *
      * @param Node $node
+     * @param bool $cleanUpPlaceholders - whether to clean up placeholders (e.g %s) which can be used to inject code
      * @return string
      * @throws WrongGeneratorException
      */
-    public function generateCode(Node $node) : string
+    public function generateCode(Node $node, bool $cleanUpPlaceholders = true) : string
     {
         if (!$this->canGenerateCode($node)) {
             throw new WrongGeneratorException(sprintf(
@@ -40,7 +41,13 @@ abstract class Generator implements LoggerAwareInterface
             ));
         }
 
-        return $this->doGenerateCode($node);
+        $code = $this->doGenerateCode($node);
+        if ($cleanUpPlaceholders) {
+            $code = str_replace('%s', '', $code);
+            return $code;
+        }
+
+        return $code;
     }
 
     /**
