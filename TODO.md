@@ -51,7 +51,7 @@
 
 #### loops
 - for
-- foreach
+- ~~foreach~~
 - while
 - do while
 
@@ -69,6 +69,10 @@
 #### improvements
 - comments
 - keep empty lines
+
+#### code improbements
+- use di container instead of finder
+- consider caching generators
 
 
 #### compatibility (with zephir)

@@ -23,4 +23,5 @@ abstract class Stmt
     const BREAK = 'Stmt_Break';
     const ECHO = 'Stmt_Echo';
     const FOREACH = 'Stmt_Foreach';
+    const FOR = 'Stmt_For';
 }

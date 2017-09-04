@@ -27,7 +27,7 @@ final class Assign extends Generator
     {
         $type = $node->expr->getType();
         $next = $this->finder->find($type);
-        $value = $next->generateCode($node->expr);
+        $value = $next->generateCode($node->expr, false);
         $left = 'let ' . $node->var->name . ' = ';
 
         if ($node->expr->getType() === Expr::FUNC_CALL) {

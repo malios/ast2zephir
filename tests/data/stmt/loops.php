@@ -4,16 +4,30 @@ namespace Malios;
 
 class Loop
 {
-    public function printThese(array $numbers)
+    public static function printThese(array $numbers)
     {
         foreach ($numbers as $index => $number) {
             echo 'numbers[' . $index . '] = '. $number . PHP_EOL;
         }
     }
 
-/*    public function printRange(int $start, int $end, array $additional = []) {
-        foreach (range($start, $end) + $additional as $number) {
+    public static function printOneToTen()
+    {
+        foreach (range(1, 10) as $number) {
             print $number;
+            print PHP_EOL;
         }
-    }*/
+    }
+
+    public function findMin(array $numbers): float
+    {
+        $min = 0;
+        for ($i = 0, $j = 10; $i < count($numbers), $j > 0; $i++, $j--) {
+            if ($numbers[$i] < $min) {
+                $min = $numbers[$i];
+            }
+        }
+
+        return $min;
+    }
 }

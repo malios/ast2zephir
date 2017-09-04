@@ -39,4 +39,7 @@ abstract class Expr
     const TERNARY = 'Expr_Ternary';
     const PRINT = 'Expr_Print';
     const FUNC_CALL = 'Expr_FuncCall';
+    const ARRAY_DIM_FETCH = 'Expr_ArrayDimFetch';
+    const POST_INC = 'Expr_PostInc';
+    const POST_DEC = 'Expr_PostDec';
 }
