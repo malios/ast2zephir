@@ -13,10 +13,4 @@ class Helper
             'original' => $original,
         ];
     }
-
-    public function test()
-    {
-        $lower = strtolower($original = 'original');
-        return $lower;
-    }
 }

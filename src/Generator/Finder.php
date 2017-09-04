@@ -24,6 +24,7 @@ use Malios\Ast2Zephir\Generator\Stmt\Break_;
 use Malios\Ast2Zephir\Generator\Stmt\Class_;
 use Malios\Ast2Zephir\Generator\Stmt\ClassConst;
 use Malios\Ast2Zephir\Generator\Stmt\ClassMethod;
+use Malios\Ast2Zephir\Generator\Stmt\Do_;
 use Malios\Ast2Zephir\Generator\Stmt\Echo_;
 use Malios\Ast2Zephir\Generator\Stmt\Else_;
 use Malios\Ast2Zephir\Generator\Stmt\ElseIf_;
@@ -38,6 +39,7 @@ use Malios\Ast2Zephir\Generator\Stmt\Return_;
 use Malios\Ast2Zephir\Generator\Stmt\Switch_;
 use Malios\Ast2Zephir\Generator\Stmt\Use_;
 use Malios\Ast2Zephir\Generator\Stmt\UseUse;
+use Malios\Ast2Zephir\Generator\Stmt\While_;
 use Malios\Ast2Zephir\Logger\EchoLogger;
 use Malios\Ast2Zephir\Scalar;
 use Malios\Ast2Zephir\Stmt;
@@ -110,6 +112,8 @@ class Finder
         Stmt::ECHO => Echo_::class,
         Stmt::FOREACH => Foreach_::class,
         Stmt::FOR => For_::class,
+        Stmt::WHILE => While_::class,
+        Stmt::DO => Do_::class,
         'Const' => Const_::class,
         'Param' => Param::class,
     ];

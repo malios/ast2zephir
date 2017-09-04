@@ -91,10 +91,10 @@ EOT;
     private function getPostConditionCode(Node\Stmt\For_ $node): string
     {
         $conditions = array_map(function (Node $n) {
-            $this->nodeToCode($n, $this->finder);
+            return $this->nodeToCode($n, $this->finder);
         }, $node->loop);
 
-        $code = join(';' . PHP_EOL, $conditions) . count($conditions) > 0 ? ';' : '';
+        $code = join(';' . PHP_EOL, $conditions) . (count($conditions) > 0 ? ';' : '');
         return $code;
     }
 }
