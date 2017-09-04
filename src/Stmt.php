@@ -10,6 +10,7 @@ abstract class Stmt
     const GROUP_USE = 'Stmt_GroupUse';
     const DECLARE = 'Stmt_Declare';
     const CLASS_ = 'Stmt_Class';
+    const INTERFACE = 'Stmt_Interface';
     const CLASS_METHOD = 'Stmt_ClassMethod';
     const CLASS_CONST = 'Stmt_ClassConst';
     const PROPERTY = 'Stmt_Property';
