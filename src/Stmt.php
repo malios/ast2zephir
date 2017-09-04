@@ -24,4 +24,6 @@ abstract class Stmt
     const ECHO = 'Stmt_Echo';
     const FOREACH = 'Stmt_Foreach';
     const FOR = 'Stmt_For';
+    const WHILE = 'Stmt_While';
+    const DO = 'Stmt_Do';
 }

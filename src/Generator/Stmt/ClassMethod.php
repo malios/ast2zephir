@@ -91,6 +91,10 @@ final class ClassMethod extends Generator
     {
         $variables = [];
 
+        if ($node instanceof Node && $this->isLoop($node)) {
+            return [];
+        }
+
         // todo: use is_iterable with php 7.1
         if (is_array($node)) {
             foreach ($node as $elem) {
@@ -117,10 +121,15 @@ final class ClassMethod extends Generator
      * @param Node|Assign|mixed $node
      * @return bool
      */
-    private function isVariableToAssign($node)
+    private function isVariableToAssign($node): bool
     {
         return $node instanceof Node
             && $node->getType() === Expr::ASSIGN
             && $node->var->getType() === Expr::VARIABLE;
+    }
+
+    private function isLoop(Node $node): bool
+    {
+        return $node->getType() === Stmt::FOR || $node->getType() === Stmt::FOREACH;
     }
 }

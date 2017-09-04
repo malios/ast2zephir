@@ -40,6 +40,7 @@
 
 - Support for inline html (workaround)
 - Support for traits (workaround)
+- String interpolation
 
 
 #### conditional
@@ -50,9 +51,9 @@
 
 
 #### loops
-- for
+- ~~for~~
 - ~~foreach~~
-- while
+- ~~while~~
 - do while
 
 #### oop
