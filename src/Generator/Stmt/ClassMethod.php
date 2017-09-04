@@ -18,6 +18,11 @@ final class ClassMethod extends Generator
     use ReturnType;
     use ParseStatements;
 
+    private $template = <<<'EOT'
+%sfunction %s(%s)%s%s
+EOT;
+
+
     /**
      * {@inheritdoc}
      * @see Generator::canGenerateCode()
@@ -38,24 +43,28 @@ final class ClassMethod extends Generator
             $this->logger->notice('Returning by reference is not supported in Zephir', ['node' => $node]);
         }
 
-        $code = $this->getModifiers($node) . ' function ' . $node->name . '(';
-        if (!empty($node->params)) {
-            $code .= $this->parseParams(...$node->params);
+        $modifiers = $this->getModifiers($node);
+        if (!empty($modifiers)) {
+            $modifiers .= ' ';
         }
 
-        $code .= ')';
+        $params = $this->parseParams(...$node->params);
         $returnType = $this->getReturnTypeDeclaration($node);
         if (!empty($returnType)) {
-            $code .= ' ' . $returnType;
+            $returnType = ' ' . $returnType;
         }
 
-        $code .= PHP_EOL . '{' . PHP_EOL;
-        if (!empty($node->stmts)) {
+        $body = '';
+        if ($node->stmts !== null) {
             $parsedStatements = $this->parseMethodStatements(...$node->stmts);
-            $code .= $this->indent($parsedStatements) . PHP_EOL;
+            if (!empty($parsedStatements)) {
+                $parsedStatements = $this->indent($parsedStatements) . PHP_EOL;
+            }
+
+            $body = PHP_EOL . '{' . PHP_EOL . $parsedStatements . '}';
         }
 
-        $code .= '}';
+        $code = sprintf($this->template, $modifiers, $node->name, $params, $returnType, $body);
         return $code;
     }
 

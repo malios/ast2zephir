@@ -32,6 +32,7 @@ use Malios\Ast2Zephir\Generator\Stmt\For_;
 use Malios\Ast2Zephir\Generator\Stmt\Foreach_;
 use Malios\Ast2Zephir\Generator\Stmt\GroupUse;
 use Malios\Ast2Zephir\Generator\Stmt\If_;
+use Malios\Ast2Zephir\Generator\Stmt\Interface_;
 use Malios\Ast2Zephir\Generator\Stmt\Namespace_;
 use Malios\Ast2Zephir\Generator\Stmt\Property;
 use Malios\Ast2Zephir\Generator\Stmt\PropertyProperty;
@@ -99,6 +100,7 @@ class Finder
         Stmt::DECLARE => Noop::class,
         Stmt::NOP => Noop::class,
         Stmt::CLASS_ => Class_::class,
+        Stmt::INTERFACE => Interface_::class,
         Stmt::CLASS_METHOD => ClassMethod::class,
         Stmt::CLASS_CONST => ClassConst::class,
         Stmt::PROPERTY => Property::class,
