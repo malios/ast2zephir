@@ -3,6 +3,7 @@
 namespace Malios\Ast2Zephir\Generator\Common;
 
 use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Generator\Expr\New_;
 use Malios\Ast2Zephir\Generator\Expr\StaticCall;
 use Malios\Ast2Zephir\Generator\Finder;
 use PhpParser\Node;
@@ -14,7 +15,7 @@ trait Arguments
     /**
      * Arguments to pass into function or method call
      *
-     * @param Node|FuncCall|MethodCall|StaticCall $node
+     * @param Node|FuncCall|MethodCall|StaticCall|New_ $node
      * @param Finder $finder
      * @return string[]
      */
@@ -34,7 +35,7 @@ trait Arguments
     }
 
     /**
-     * Zephir alternative of variable assign withing function or method call
+     * Zephir alternative of variable assign within function or method call
      *
      * e.g:
      * <code>

@@ -46,4 +46,5 @@ abstract class Expr
     const POST_INC = 'Expr_PostInc';
     const POST_DEC = 'Expr_PostDec';
     const EXIT = 'Expr_Exit';
+    const NEW = 'Expr_New';
 }
