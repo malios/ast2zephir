@@ -13,6 +13,7 @@ use Malios\Ast2Zephir\Generator\Expr\ConstFetch;
 use Malios\Ast2Zephir\Generator\Expr\Exit_;
 use Malios\Ast2Zephir\Generator\Expr\FuncCall;
 use Malios\Ast2Zephir\Generator\Expr\MethodCall;
+use Malios\Ast2Zephir\Generator\Expr\New_;
 use Malios\Ast2Zephir\Generator\Expr\PostDec;
 use Malios\Ast2Zephir\Generator\Expr\PostInc;
 use Malios\Ast2Zephir\Generator\Expr\Print_;
@@ -46,6 +47,7 @@ use Malios\Ast2Zephir\Generator\Stmt\Use_;
 use Malios\Ast2Zephir\Generator\Stmt\UseUse;
 use Malios\Ast2Zephir\Generator\Stmt\While_;
 use Malios\Ast2Zephir\Logger\EchoLogger;
+use Malios\Ast2Zephir\Name as NameEnum;
 use Malios\Ast2Zephir\Scalar;
 use Malios\Ast2Zephir\Stmt;
 use Psr\Log\LoggerInterface;
@@ -98,6 +100,7 @@ class Finder
         Expr::POST_INC => PostInc::class,
         Expr::POST_DEC => PostDec::class,
         Expr::EXIT => Exit_::class,
+        Expr::NEW => New_::class,
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,
@@ -124,6 +127,7 @@ class Finder
         Stmt::FOR => For_::class,
         Stmt::WHILE => While_::class,
         Stmt::DO => Do_::class,
+        NameEnum::NAME => Name::class,
         'Const' => Const_::class,
         'Param' => Param::class,
     ];

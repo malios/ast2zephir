@@ -60,6 +60,8 @@
 - ~~method call~~
 - ~~interfaces~~
 - traits
+- ~~new keyword~~
+- class constant fetch
 
 #### other
 - ~~function call~~

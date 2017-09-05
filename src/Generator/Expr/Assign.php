@@ -45,6 +45,7 @@ final class Assign extends Generator
             Expr::FUNC_CALL,
             Expr::STATIC_CALL,
             Expr::METHOD_CALL,
+            Expr::NEW,
         ];
 
         return in_array($node->getType(), $callables);
