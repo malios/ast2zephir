@@ -7,10 +7,10 @@ use PhpParser\Node;
 
 trait NodeToCode
 {
-    private function nodeToCode(Node $node, Finder $finder)
+    private function nodeToCode(Node $node, Finder $finder, bool $cleanUpPlaceholders = true)
     {
         $generator = $finder->find($node->getType());
-        $code = $generator->generateCode($node);
+        $code = $generator->generateCode($node, $cleanUpPlaceholders);
         return $code;
     }
 }

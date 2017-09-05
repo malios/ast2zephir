@@ -9,6 +9,7 @@ abstract class Expr
     const ARRAY_ITEM = 'Expr_ArrayItem';
     const CONST_FETCH = 'Expr_ConstFetch';
     const PROPERTY_FETCH = 'Expr_PropertyFetch';
+    const STATIC_PROPERTY_FETCH = 'Expr_StaticPropertyFetch';
     const BINARY_OP = 'Expr_BinaryOp_';
     const BINARY_OP_PLUS = 'Expr_BinaryOp_Plus';
     const BINARY_OP_MINUS = 'Expr_BinaryOp_Minus';
@@ -39,7 +40,10 @@ abstract class Expr
     const TERNARY = 'Expr_Ternary';
     const PRINT = 'Expr_Print';
     const FUNC_CALL = 'Expr_FuncCall';
+    const METHOD_CALL = 'Expr_MethodCall';
+    const STATIC_CALL = 'Expr_StaticCall';
     const ARRAY_DIM_FETCH = 'Expr_ArrayDimFetch';
     const POST_INC = 'Expr_PostInc';
     const POST_DEC = 'Expr_PostDec';
+    const EXIT = 'Expr_Exit';
 }
