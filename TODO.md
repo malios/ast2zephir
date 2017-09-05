@@ -54,15 +54,15 @@
 - ~~for~~
 - ~~foreach~~
 - ~~while~~
-- do while
+- ~~do while~~
 
 #### oop
-- method call
-- interfaces
+- ~~method call~~
+- ~~interfaces~~
 - traits
 
 #### other
-- function call
+- ~~function call~~
 - regex
 - goto
 - exceptions (throw/catch/finally)

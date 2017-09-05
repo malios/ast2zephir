@@ -10,11 +10,15 @@ use Malios\Ast2Zephir\Generator\Expr\ArrayItem;
 use Malios\Ast2Zephir\Generator\Expr\Assign;
 use Malios\Ast2Zephir\Generator\Expr\BinaryOp;
 use Malios\Ast2Zephir\Generator\Expr\ConstFetch;
+use Malios\Ast2Zephir\Generator\Expr\Exit_;
 use Malios\Ast2Zephir\Generator\Expr\FuncCall;
+use Malios\Ast2Zephir\Generator\Expr\MethodCall;
 use Malios\Ast2Zephir\Generator\Expr\PostDec;
 use Malios\Ast2Zephir\Generator\Expr\PostInc;
 use Malios\Ast2Zephir\Generator\Expr\Print_;
 use Malios\Ast2Zephir\Generator\Expr\PropertyFetch;
+use Malios\Ast2Zephir\Generator\Expr\StaticCall;
+use Malios\Ast2Zephir\Generator\Expr\StaticPropertyFetch;
 use Malios\Ast2Zephir\Generator\Expr\Ternary;
 use Malios\Ast2Zephir\Generator\Expr\Variable;
 use Malios\Ast2Zephir\Generator\Scalar\DNumber;
@@ -58,6 +62,7 @@ class Finder
         Expr::ARRAY_ITEM => ArrayItem::class,
         Expr::CONST_FETCH => ConstFetch::class,
         Expr::PROPERTY_FETCH => PropertyFetch::class,
+        Expr::STATIC_PROPERTY_FETCH => StaticPropertyFetch::class,
         Expr::BINARY_OP_PLUS => BinaryOp::class,
         Expr::BINARY_OP_MINUS => BinaryOp::class,
         Expr::BINARY_OP_MULTIPLY => BinaryOp::class,
@@ -87,9 +92,12 @@ class Finder
         Expr::TERNARY => Ternary::class,
         Expr::PRINT => Print_::class,
         Expr::FUNC_CALL => FuncCall::class,
+        Expr::METHOD_CALL => MethodCall::class,
+        Expr::STATIC_CALL => StaticCall::class,
         Expr::ARRAY_DIM_FETCH => ArrayDimFetch::class,
         Expr::POST_INC => PostInc::class,
         Expr::POST_DEC => PostDec::class,
+        Expr::EXIT => Exit_::class,
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,

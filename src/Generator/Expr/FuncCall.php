@@ -3,11 +3,14 @@
 namespace Malios\Ast2Zephir\Generator\Expr;
 
 use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Generator\Common\Arguments;
 use Malios\Ast2Zephir\Generator\Generator;
 use PhpParser\Node;
 
 final class FuncCall extends Generator
 {
+    use Arguments;
+
     /**
      * {@inheritdoc}
      * @see Generator::canGenerateCode()
@@ -24,18 +27,10 @@ final class FuncCall extends Generator
      */
     protected function doGenerateCode($node): string
     {
-        $code = '';
-        $arguments = [];
-        foreach ($node->args as $arg) {
-            if ($arg->value->getType() === Expr::ASSIGN) {
-                $arguments[] = $arg->value->var->name;
-                $gen = $this->finder->find($arg->value->getType());
-                $code = $gen->generateCode($arg->value) . ';' . PHP_EOL . $code;
-            } else {
-                $gen = $this->finder->find($arg->value->getType());
-                $arguments[] = $gen->generateCode($arg->value);
-            }
-        }
+        // variable assign withing function call if such exists
+        $code = $this->getAssignCode($node, $this->finder);
+
+        $arguments = $this->getArguments($node, $this->finder);
 
         /**
          * Since zephir does not support variable assign in function call we have to work around it
