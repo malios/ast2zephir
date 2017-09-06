@@ -61,13 +61,13 @@
 - ~~interfaces~~
 - traits
 - ~~new keyword~~
-- class constant fetch
+- ~~class constant fetch~~
 
 #### other
 - ~~function call~~
 - regex
 - goto
-- exceptions (throw/catch/finally)
+- ~~exceptions (throw/catch/~~finally)
 
 #### improvements
 - comments

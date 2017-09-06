@@ -27,4 +27,7 @@ abstract class Stmt
     const FOR = 'Stmt_For';
     const WHILE = 'Stmt_While';
     const DO = 'Stmt_Do';
+    const THROW = 'Stmt_Throw';
+    const CATCH = 'Stmt_Catch';
+    const TRY_CATCH = 'Stmt_TryCatch';
 }
