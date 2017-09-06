@@ -24,6 +24,8 @@ use Malios\Ast2Zephir\Generator\Expr\StaticPropertyFetch;
 use Malios\Ast2Zephir\Generator\Expr\Ternary;
 use Malios\Ast2Zephir\Generator\Expr\Variable;
 use Malios\Ast2Zephir\Generator\Scalar\DNumber;
+use Malios\Ast2Zephir\Generator\Scalar\Encapsed;
+use Malios\Ast2Zephir\Generator\Scalar\EncapsedStringPart;
 use Malios\Ast2Zephir\Generator\Scalar\LNumber;
 use Malios\Ast2Zephir\Generator\Scalar\String_;
 use Malios\Ast2Zephir\Generator\Stmt\Break_;
@@ -110,6 +112,8 @@ class Finder
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,
+        Scalar::ENCAPSED => Encapsed::class,
+        Scalar::ENCAPSED_STRING_PART => EncapsedStringPart::class,
         Stmt::NAMESPACE => Namespace_::class,
         Stmt::USE => Use_::class,
         Stmt::USE_USE => UseUse::class,
