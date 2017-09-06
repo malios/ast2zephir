@@ -38,7 +38,7 @@
 
 #### Additional
 
-- Support for inline html (workaround)
+- ~~Support for inline html (workaround)~~
 - Support for traits (workaround)
 - String interpolation
 

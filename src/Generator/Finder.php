@@ -39,6 +39,7 @@ use Malios\Ast2Zephir\Generator\Stmt\For_;
 use Malios\Ast2Zephir\Generator\Stmt\Foreach_;
 use Malios\Ast2Zephir\Generator\Stmt\GroupUse;
 use Malios\Ast2Zephir\Generator\Stmt\If_;
+use Malios\Ast2Zephir\Generator\Stmt\InlineHTML;
 use Malios\Ast2Zephir\Generator\Stmt\Interface_;
 use Malios\Ast2Zephir\Generator\Stmt\Namespace_;
 use Malios\Ast2Zephir\Generator\Stmt\Property;
@@ -135,6 +136,7 @@ class Finder
         Stmt::THROW => Throw_::class,
         Stmt::CATCH => Catch_::class,
         Stmt::TRY_CATCH => TryCatch::class,
+        Stmt::INLINE_HTML => InlineHTML::class,
         NameEnum::NAME => Name::class,
         NameEnum::FULLY_QUALIFIED => FullyQualified::class,
         'Const' => Const_::class,

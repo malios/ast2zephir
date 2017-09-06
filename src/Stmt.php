@@ -30,4 +30,5 @@ abstract class Stmt
     const THROW = 'Stmt_Throw';
     const CATCH = 'Stmt_Catch';
     const TRY_CATCH = 'Stmt_TryCatch';
+    const INLINE_HTML = 'Stmt_InlineHTML';
 }
