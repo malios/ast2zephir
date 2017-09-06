@@ -12,4 +12,14 @@ abstract class Test
             "qux" => 1
         ]
     ];
+
+    public function getTest()
+    {
+        return self::TEST;
+    }
+
+    public function getPI()
+    {
+        return Test::PI;
+    }
 }

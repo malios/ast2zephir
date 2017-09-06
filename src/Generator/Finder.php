@@ -9,6 +9,7 @@ use Malios\Ast2Zephir\Generator\Expr\ArrayDimFetch;
 use Malios\Ast2Zephir\Generator\Expr\ArrayItem;
 use Malios\Ast2Zephir\Generator\Expr\Assign;
 use Malios\Ast2Zephir\Generator\Expr\BinaryOp;
+use Malios\Ast2Zephir\Generator\Expr\ClassConstFetch;
 use Malios\Ast2Zephir\Generator\Expr\ConstFetch;
 use Malios\Ast2Zephir\Generator\Expr\Exit_;
 use Malios\Ast2Zephir\Generator\Expr\FuncCall;
@@ -26,6 +27,7 @@ use Malios\Ast2Zephir\Generator\Scalar\DNumber;
 use Malios\Ast2Zephir\Generator\Scalar\LNumber;
 use Malios\Ast2Zephir\Generator\Scalar\String_;
 use Malios\Ast2Zephir\Generator\Stmt\Break_;
+use Malios\Ast2Zephir\Generator\Stmt\Catch_;
 use Malios\Ast2Zephir\Generator\Stmt\Class_;
 use Malios\Ast2Zephir\Generator\Stmt\ClassConst;
 use Malios\Ast2Zephir\Generator\Stmt\ClassMethod;
@@ -43,6 +45,8 @@ use Malios\Ast2Zephir\Generator\Stmt\Property;
 use Malios\Ast2Zephir\Generator\Stmt\PropertyProperty;
 use Malios\Ast2Zephir\Generator\Stmt\Return_;
 use Malios\Ast2Zephir\Generator\Stmt\Switch_;
+use Malios\Ast2Zephir\Generator\Stmt\Throw_;
+use Malios\Ast2Zephir\Generator\Stmt\TryCatch;
 use Malios\Ast2Zephir\Generator\Stmt\Use_;
 use Malios\Ast2Zephir\Generator\Stmt\UseUse;
 use Malios\Ast2Zephir\Generator\Stmt\While_;
@@ -63,6 +67,7 @@ class Finder
         Expr::ARRAY => Array_::class,
         Expr::ARRAY_ITEM => ArrayItem::class,
         Expr::CONST_FETCH => ConstFetch::class,
+        Expr::CLASS_CONST_FETCH => ClassConstFetch::class,
         Expr::PROPERTY_FETCH => PropertyFetch::class,
         Expr::STATIC_PROPERTY_FETCH => StaticPropertyFetch::class,
         Expr::BINARY_OP_PLUS => BinaryOp::class,
@@ -127,7 +132,11 @@ class Finder
         Stmt::FOR => For_::class,
         Stmt::WHILE => While_::class,
         Stmt::DO => Do_::class,
+        Stmt::THROW => Throw_::class,
+        Stmt::CATCH => Catch_::class,
+        Stmt::TRY_CATCH => TryCatch::class,
         NameEnum::NAME => Name::class,
+        NameEnum::FULLY_QUALIFIED => FullyQualified::class,
         'Const' => Const_::class,
         'Param' => Param::class,
     ];

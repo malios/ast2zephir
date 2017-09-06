@@ -8,6 +8,7 @@ abstract class Expr
     const ARRAY = 'Expr_Array';
     const ARRAY_ITEM = 'Expr_ArrayItem';
     const CONST_FETCH = 'Expr_ConstFetch';
+    const CLASS_CONST_FETCH = 'Expr_ClassConstFetch';
     const PROPERTY_FETCH = 'Expr_PropertyFetch';
     const STATIC_PROPERTY_FETCH = 'Expr_StaticPropertyFetch';
     const BINARY_OP = 'Expr_BinaryOp_';
