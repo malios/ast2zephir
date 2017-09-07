@@ -7,9 +7,11 @@ use Malios\Ast2Zephir\Generator\Common\NodeToCode;
 use Malios\Ast2Zephir\Generator\Generator;
 use PhpParser\Node;
 
-final class ArrayDimFetch extends Generator
+final class Isset_ extends Generator
 {
     use NodeToCode;
+
+    private $template = 'isset(%s)';
 
     /**
      * {@inheritdoc}
@@ -17,23 +19,23 @@ final class ArrayDimFetch extends Generator
      */
     protected function canGenerateCode(Node $node): bool
     {
-        return $node->getType() === Expr::ARRAY_DIM_FETCH;
+        return $node->getType() === Expr::ISSET;
     }
 
     /**
      * {@inheritdoc}
      * @see Generator::doGenerateCode()
-     * @param Node\Expr\ArrayDimFetch $node
+     * @param Node\Expr\Isset_ $node
      */
     protected function doGenerateCode($node): string
     {
-        $var = $this->nodeToCode($node->var, $this->finder);
-        if ($node->dim === null) {
-            $dim = '';
-        } else {
-            $dim = $this->nodeToCode($node->dim, $this->finder);
-        }
-        $code = $var . '[' . $dim . ']';
+        $expressions = array_map(function (Node $n) {
+            $var = $this->nodeToCode($n, $this->finder);
+            $isset = sprintf($this->template, $var);
+            return $isset;
+        }, $node->vars);
+
+        $code = join(' && ', $expressions);
         return $code;
     }
 }

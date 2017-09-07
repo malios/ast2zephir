@@ -11,8 +11,12 @@ use Malios\Ast2Zephir\Generator\Expr\Assign;
 use Malios\Ast2Zephir\Generator\Expr\BinaryOp;
 use Malios\Ast2Zephir\Generator\Expr\ClassConstFetch;
 use Malios\Ast2Zephir\Generator\Expr\ConstFetch;
+use Malios\Ast2Zephir\Generator\Expr\Empty_;
+use Malios\Ast2Zephir\Generator\Expr\Eval_;
 use Malios\Ast2Zephir\Generator\Expr\Exit_;
 use Malios\Ast2Zephir\Generator\Expr\FuncCall;
+use Malios\Ast2Zephir\Generator\Expr\Instanceof_;
+use Malios\Ast2Zephir\Generator\Expr\Isset_;
 use Malios\Ast2Zephir\Generator\Expr\MethodCall;
 use Malios\Ast2Zephir\Generator\Expr\New_;
 use Malios\Ast2Zephir\Generator\Expr\PostDec;
@@ -50,6 +54,7 @@ use Malios\Ast2Zephir\Generator\Stmt\Return_;
 use Malios\Ast2Zephir\Generator\Stmt\Switch_;
 use Malios\Ast2Zephir\Generator\Stmt\Throw_;
 use Malios\Ast2Zephir\Generator\Stmt\TryCatch;
+use Malios\Ast2Zephir\Generator\Stmt\Unset_;
 use Malios\Ast2Zephir\Generator\Stmt\Use_;
 use Malios\Ast2Zephir\Generator\Stmt\UseUse;
 use Malios\Ast2Zephir\Generator\Stmt\While_;
@@ -109,6 +114,10 @@ class Finder
         Expr::POST_DEC => PostDec::class,
         Expr::EXIT => Exit_::class,
         Expr::NEW => New_::class,
+        Expr::ISSET => Isset_::class,
+        Expr::EMPTY => Empty_::class,
+        Expr::INSTANCEOF => Instanceof_::class,
+        Expr::EVAL => Eval_::class,
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,
@@ -141,6 +150,7 @@ class Finder
         Stmt::CATCH => Catch_::class,
         Stmt::TRY_CATCH => TryCatch::class,
         Stmt::INLINE_HTML => InlineHTML::class,
+        Stmt::UNSET => Unset_::class,
         NameEnum::NAME => Name::class,
         NameEnum::FULLY_QUALIFIED => FullyQualified::class,
         'Const' => Const_::class,

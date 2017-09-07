@@ -59,7 +59,7 @@
 #### oop
 - ~~method call~~
 - ~~interfaces~~
-- traits
+- traits (do not forget insteadof keyword)
 - ~~new keyword~~
 - ~~class constant fetch~~
 
@@ -68,6 +68,7 @@
 - regex
 - goto
 - ~~exceptions (throw/catch/~~finally)
+- change variable names which can break Zephir compile such as let, var, isset, typeof, empty, if, else, try, catch... (too many)
 
 #### improvements
 - comments
