@@ -24,6 +24,7 @@ final class EncapsedStringPart extends Generator
      */
     protected function doGenerateCode($node): string
     {
-        // @todo: implement
+        $value = json_encode($node->value);
+        return $value;
     }
 }

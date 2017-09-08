@@ -31,8 +31,7 @@ final class Encapsed extends Generator
             return $this->nodeToCode($part, $this->finder);
         }, $node->parts);
 
-        dump($parts);
-        $code = join('. ', $parts);
+        $code = join(' . ', $parts);
         return $code;
     }
 }
