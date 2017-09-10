@@ -2,12 +2,15 @@
 
 namespace Malios\Ast2Zephir\Generator\Stmt;
 
+use Malios\Ast2Zephir\Generator\Common\NodeToCode;
 use Malios\Ast2Zephir\Generator\Generator;
 use Malios\Ast2Zephir\Stmt;
 use PhpParser\Node;
 
 final class Return_ extends Generator
 {
+    use NodeToCode;
+
     /**
      * {@inheritdoc}
      * @see Generator::canGenerateCode()
@@ -24,7 +27,11 @@ final class Return_ extends Generator
      */
     protected function doGenerateCode($node): string
     {
-        $next = $this->finder->find($node->expr->getType());
-        return 'return ' . $next->generateCode($node->expr);
+        $returnVal = '';
+        if ($node->expr !== null) {
+            $returnVal = ' ' . $this->nodeToCode($node->expr, $this->finder);
+        }
+
+        return 'return' . $returnVal;
     }
 }
