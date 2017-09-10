@@ -66,6 +66,11 @@ class MegaHelper
         return $num === 0 ? false : $num % 2 === 0 ? true : false;
     }
 
+    public function ternaryShort($num = null)
+    {
+        return $num ?: 0;
+    }
+
     public function getMood(string $dayOfWeek): string
     {
         switch ($dayOfWeek) {

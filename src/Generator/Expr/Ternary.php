@@ -3,11 +3,17 @@
 namespace Malios\Ast2Zephir\Generator\Expr;
 
 use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Generator\Common\NodeToCode;
 use Malios\Ast2Zephir\Generator\Generator;
 use PhpParser\Node;
 
 final class Ternary extends Generator
 {
+    use NodeToCode;
+
+    private $longSyntaxTemplate = "%s ? %s : %s";
+    private $shortSyntaxTemplate = "%s ?: %s";
+
     /**
      * {@inheritdoc}
      * @see Generator::canGenerateCode()
@@ -24,15 +30,15 @@ final class Ternary extends Generator
      */
     protected function doGenerateCode($node): string
     {
-        $conditionGenerator = $this->finder->find($node->cond->getType());
-        $caseTrueGenerator = $this->finder->find($node->if->getType());
-        $caseFalseGenerator = $this->finder->find($node->else->getType());
+        $cond = $this->nodeToCode($node->cond, $this->finder);
+        $else = $this->nodeToCode($node->else, $this->finder);
 
-        $code = '(' . $conditionGenerator->generateCode($node->cond) . ')'
-            . ' ? '
-            . $caseTrueGenerator->generateCode($node->if)
-            . ' : '
-            . $caseFalseGenerator->generateCode($node->else);
+        if ($node->if === null) {
+            $code = sprintf($this->shortSyntaxTemplate, $cond, $else);
+        } else {
+            $if = $this->nodeToCode($node->if, $this->finder);
+            $code = sprintf($this->longSyntaxTemplate, $cond, $if, $else);
+        }
 
         return $code;
     }

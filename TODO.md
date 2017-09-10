@@ -74,9 +74,21 @@
 - comments
 - keep empty lines
 
-#### code improbements
+#### code improvements
 - use di container instead of finder
 - consider caching generators
+
+
+#### Things that need to be worked around
+- Given the following code:
+
+```Zephir
+if "hello" {
+    echo "hello";
+}
+```
+
+Zephir will trigger compile time error. This is valid in PHP.
 
 
 #### compatibility (with zephir)

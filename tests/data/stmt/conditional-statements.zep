@@ -51,11 +51,15 @@ class MegaHelper
     }
     public function checkIsEvenInACoolWay(int num)
     {
-        return ((num % 2) === 0) ? true : false;
+        return (num % 2) === 0 ? true : false;
     }
     public function multipleTernaryOperationsAreForCoolKids(int num)
     {
-        return ((num === 0) ? false : (num % 2) === 0) ? true : false;
+        return num === 0 ? false : (num % 2) === 0 ? true : false;
+    }
+    public function ternaryShort(num = null)
+    {
+        return num ?: 0;
     }
     public function getMood(string dayOfWeek) -> string
     {
