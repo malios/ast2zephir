@@ -33,6 +33,11 @@ class MegaHelper
        }
     }
 
+    public function isNot($cond)
+    {
+        return !$cond;
+    }
+
     public function getDayOfWeek(int $num): string
     {
         if ($num === 1) {

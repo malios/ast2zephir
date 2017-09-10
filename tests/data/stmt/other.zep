@@ -18,4 +18,19 @@ class Printer
     {
         echo a, b, c;
     }
+    public function castThis(value)
+    {
+        return [
+            "bool": (bool) value,
+            "boolean": (bool) value,
+            "int": (int) value,
+            "integer": (int) value,
+            "string": (string) value,
+            "object": (object) value,
+            "float": (double) value,
+            "double": (double) value,
+            "real": (double) value,
+            "array": (array) value
+        ];
+    }
 }

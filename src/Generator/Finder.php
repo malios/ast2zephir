@@ -9,6 +9,8 @@ use Malios\Ast2Zephir\Generator\Expr\ArrayDimFetch;
 use Malios\Ast2Zephir\Generator\Expr\ArrayItem;
 use Malios\Ast2Zephir\Generator\Expr\Assign;
 use Malios\Ast2Zephir\Generator\Expr\BinaryOp;
+use Malios\Ast2Zephir\Generator\Expr\BooleanNot;
+use Malios\Ast2Zephir\Generator\Expr\Cast;
 use Malios\Ast2Zephir\Generator\Expr\ClassConstFetch;
 use Malios\Ast2Zephir\Generator\Expr\ConstFetch;
 use Malios\Ast2Zephir\Generator\Expr\Empty_;
@@ -37,6 +39,7 @@ use Malios\Ast2Zephir\Generator\Stmt\Catch_;
 use Malios\Ast2Zephir\Generator\Stmt\Class_;
 use Malios\Ast2Zephir\Generator\Stmt\ClassConst;
 use Malios\Ast2Zephir\Generator\Stmt\ClassMethod;
+use Malios\Ast2Zephir\Generator\Stmt\Continue_;
 use Malios\Ast2Zephir\Generator\Stmt\Do_;
 use Malios\Ast2Zephir\Generator\Stmt\Echo_;
 use Malios\Ast2Zephir\Generator\Stmt\Else_;
@@ -118,6 +121,14 @@ class Finder
         Expr::EMPTY => Empty_::class,
         Expr::INSTANCEOF => Instanceof_::class,
         Expr::EVAL => Eval_::class,
+        Expr::BOOLEAN_NOT => BooleanNot::class,
+        Expr::CAST_BOOL => Cast::class,
+        Expr::CAST_INT => Cast::class,
+        Expr::CAST_STRING => Cast::class,
+        Expr::CAST_OBJECT => Cast::class,
+        Expr::CAST_DOUBLE => Cast::class,
+        Expr::CAST_ARRAY => Cast::class,
+        Expr::CAST_UNSET => Cast::class,
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,
@@ -141,6 +152,7 @@ class Finder
         Stmt::ELSEIF => ElseIf_::class,
         Stmt::SWITCH => Switch_::class,
         Stmt::BREAK => Break_::class,
+        Stmt::CONTINUE => Continue_::class,
         Stmt::ECHO => Echo_::class,
         Stmt::FOREACH => Foreach_::class,
         Stmt::FOR => For_::class,

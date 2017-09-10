@@ -37,6 +37,9 @@ class Loop
         let i = 0;
         let k = 10;
         while(i <= 10 && k > 1) {
+            if i == k {
+                continue;
+            };
             echo "Var " . i . " is " . k . PHP_EOL;
             let i++;
             let k--;

@@ -22,6 +22,7 @@ abstract class Stmt
     const NOP = 'Stmt_Nop';
     const SWITCH = 'Stmt_Switch';
     const BREAK = 'Stmt_Break';
+    const CONTINUE = 'Stmt_Continue';
     const ECHO = 'Stmt_Echo';
     const FOREACH = 'Stmt_Foreach';
     const FOR = 'Stmt_For';

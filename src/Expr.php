@@ -52,4 +52,13 @@ abstract class Expr
     const EMPTY = 'Expr_Empty';
     const INSTANCEOF = 'Expr_Instanceof';
     const EVAL = 'Expr_Eval';
+    const BOOLEAN_NOT = 'Expr_BooleanNot';
+    const CAST = 'Expr_Cast_';
+    const CAST_BOOL = 'Expr_Cast_Bool';
+    const CAST_INT = 'Expr_Cast_Int';
+    const CAST_STRING = 'Expr_Cast_String';
+    const CAST_OBJECT = 'Expr_Cast_Object';
+    const CAST_DOUBLE = 'Expr_Cast_Double';
+    const CAST_ARRAY = 'Expr_Cast_Array';
+    const CAST_UNSET = 'Expr_Cast_Unset';
 }

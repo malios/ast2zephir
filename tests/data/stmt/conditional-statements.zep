@@ -27,6 +27,10 @@ class MegaHelper
             return false;
         };
     }
+    public function isNot(cond)
+    {
+        return !cond;
+    }
     public function getDayOfWeek(int num) -> string
     {
         var day;

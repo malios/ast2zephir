@@ -34,6 +34,9 @@ class Loop
     public function veryEfficientPrint()
     {
         for ($i=0, $k=10; $i<=10, $k > 1; $i++, $k--) {
+            if ($i == $k) {
+                continue;
+            }
             echo "Var " . $i . " is " . $k . PHP_EOL;
         }
     }
