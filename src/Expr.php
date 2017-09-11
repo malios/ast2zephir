@@ -74,4 +74,5 @@ abstract class Expr
     const CAST_ARRAY = 'Expr_Cast_Array';
     const CAST_UNSET = 'Expr_Cast_Unset';
     const CLONE = 'Expr_Clone';
+    const LIST = 'Expr_List';
 }

@@ -3,6 +3,7 @@
 namespace Malios\Ast2Zephir\Generator\Stmt;
 
 use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Generator\Common\NodeToCode;
 use Malios\Ast2Zephir\Generator\Common\Parameters;
 use Malios\Ast2Zephir\Generator\Generator;
 use Malios\Ast2Zephir\Generator\Common\Modifiers;
@@ -18,6 +19,9 @@ final class ClassMethod extends Generator
     use ReturnType;
     use ParseStatements;
     use Parameters;
+    use NodeToCode {
+        NodeToCode::nodeToCode insteadof Parameters;
+    }
 
     private $template = <<<'EOT'
 %sfunction %s(%s)%s%s
@@ -105,6 +109,8 @@ EOT;
             return $variables;
         } elseif ($this->isVariableToAssign($node)) {
             $variables[] = $node->var->name;
+        } elseif ($node instanceof Node && $node->getType() === Expr::LIST) {
+            $variables = array_merge($variables, $this->getListVariables($node));
         } elseif (!is_object($node)) {
             return $variables;
         }
@@ -132,5 +138,17 @@ EOT;
     private function isLoop(Node $node): bool
     {
         return $node->getType() === Stmt::FOR || $node->getType() === Stmt::FOREACH;
+    }
+
+    private function getListVariables(Node\Expr\List_ $node): array
+    {
+        $variables = [];
+        foreach ($node->items as $item) {
+            if ($item->value->getType() === Expr::VARIABLE) {
+                $variables[] = $this->nodeToCode($item, $this->finder);
+            }
+        }
+
+        return $variables;
     }
 }

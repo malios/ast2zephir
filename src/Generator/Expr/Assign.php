@@ -28,6 +28,15 @@ final class Assign extends Generator
      */
     protected function doGenerateCode($node): string
     {
+        if ($node->var->getType() === Expr::LIST) {
+            /** @var List_ $listGen */
+            $listGen = $this->finder->find(Expr::LIST);
+            $listGen->setListArrayExpression($node->expr);
+
+            // in zephir list language construct is not supported
+            return $listGen->generateCode($node->var);
+        }
+
         $value = $this->nodeToCode($node->expr, $this->finder,false);
         $left = 'let ' . $this->nodeToCode($node->var, $this->finder) . ' = ';
         if ($this->isCallable($node->expr)) {

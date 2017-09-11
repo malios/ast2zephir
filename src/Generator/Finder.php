@@ -21,6 +21,7 @@ use Malios\Ast2Zephir\Generator\Expr\Exit_;
 use Malios\Ast2Zephir\Generator\Expr\FuncCall;
 use Malios\Ast2Zephir\Generator\Expr\Instanceof_;
 use Malios\Ast2Zephir\Generator\Expr\Isset_;
+use Malios\Ast2Zephir\Generator\Expr\List_;
 use Malios\Ast2Zephir\Generator\Expr\MethodCall;
 use Malios\Ast2Zephir\Generator\Expr\New_;
 use Malios\Ast2Zephir\Generator\Expr\PostDec;
@@ -143,6 +144,7 @@ class Finder
         Expr::CAST_ARRAY => Cast::class,
         Expr::CAST_UNSET => Cast::class,
         Expr::CLONE => Clone_::class,
+        Expr::LIST => List_::class,
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,
