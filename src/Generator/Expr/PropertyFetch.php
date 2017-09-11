@@ -3,12 +3,18 @@
 namespace Malios\Ast2Zephir\Generator\Expr;
 
 use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Generator\Common\NodeToCode;
 use Malios\Ast2Zephir\Generator\Generator;
 use PhpParser\Node;
 use PhpParser\Node\Expr\PropertyFetch as ExprPropertyFetch;
 
 final class PropertyFetch extends Generator
 {
+    use NodeToCode;
+
+    private $template = '%s->%s';
+    private $fetchByVariableTemplate = '%s->{%s}';
+
     /**
      * {@inheritdoc}
      * @see Generator::canGenerateCode()
@@ -25,6 +31,16 @@ final class PropertyFetch extends Generator
      */
     protected function doGenerateCode($expr): string
     {
-        return $expr->var->name . '->' . $expr->name;
+        $left = $expr->var->name;
+        if ($expr->name instanceof Node) {
+            $right = $this->nodeToCode($expr->name, $this->finder);
+            $template = $this->fetchByVariableTemplate;
+        } else {
+            $right = $expr->name;
+            $template = $this->template;
+        }
+
+        $code = sprintf($template, $left, $right);
+        return $code;
     }
 }
