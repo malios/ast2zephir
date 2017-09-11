@@ -3,6 +3,7 @@
 namespace Malios\Ast2Zephir\Generator\Stmt;
 
 use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Generator\Common\Parameters;
 use Malios\Ast2Zephir\Generator\Generator;
 use Malios\Ast2Zephir\Generator\Common\Modifiers;
 use Malios\Ast2Zephir\Generator\Common\ParseStatements;
@@ -10,13 +11,13 @@ use Malios\Ast2Zephir\Generator\Common\ReturnType;
 use Malios\Ast2Zephir\Stmt;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Assign;
-use PhpParser\Node\Param;
 
 final class ClassMethod extends Generator
 {
     use Modifiers;
     use ReturnType;
     use ParseStatements;
+    use Parameters;
 
     private $template = <<<'EOT'
 %sfunction %s(%s)%s%s
@@ -48,7 +49,8 @@ EOT;
             $modifiers .= ' ';
         }
 
-        $params = $this->parseParams(...$node->params);
+        $params = $this->getParameters($this->finder, ...$node->params);
+        $paramsCode = join(', ', $params);
         $returnType = $this->getReturnTypeDeclaration($node);
         if (!empty($returnType)) {
             $returnType = ' ' . $returnType;
@@ -64,18 +66,8 @@ EOT;
             $body = PHP_EOL . '{' . PHP_EOL . $parsedStatements . '}';
         }
 
-        $code = sprintf($this->template, $modifiers, $node->name, $params, $returnType, $body);
+        $code = sprintf($this->template, $modifiers, $node->name, $paramsCode, $returnType, $body);
         return $code;
-    }
-
-    private function parseParams(Param ...$params): string
-    {
-        $paramsArray = array_map(function (Param $param) {
-            $generator = $this->finder->find($param->getType());
-            return $generator->generateCode($param);
-        }, $params);
-
-        return join(', ', $paramsArray);
     }
 
     private function parseMethodStatements(Node ...$stmts)

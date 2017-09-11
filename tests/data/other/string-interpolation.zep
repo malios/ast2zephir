@@ -3,7 +3,7 @@ namespace Malios;
 class Person
 {
     public name = "John";
-    public function sayHello(Person person)
+    public function sayHello(<Person> person)
     {
         var question;
         let question = this->getQuestion();

@@ -2,10 +2,15 @@
 
 namespace Malios\Ast2Zephir\Generator;
 
+use Malios\Ast2Zephir\Generator\Common\NodeToCode;
 use PhpParser\Node;
 
 final class Param extends Generator
 {
+    use NodeToCode;
+
+    private $template = '%s %s %s'; // e.g function test(int a = 0) {}
+
     /**
      * {@inheritdoc}
      * @see Generator::canGenerateCode()
@@ -26,17 +31,28 @@ final class Param extends Generator
             $this->logger->notice('Pass by reference is not supported in Zephir', ['node' => $node]);
         }
 
-        $code = '';
-        if ($node->type !== null) {
-            $code .= $node->type . ' ';
-        }
-
-        $code .= $node->name;
+        $left = $this->getTypeString($node);
+        $right = '';
         if ($node->default !== null) {
-            $next = $this->finder->find($node->default->getType());
-            $code .= ' = ' . $next->generateCode($node->default);
+            $default = $this->nodeToCode($node->default, $this->finder);
+            $right = '= ' . $default;
         }
 
-        return $code;
+        $code = sprintf($this->template, $left, $node->name, $right);
+        return trim($code);
+    }
+
+    private function getTypeString(Node\Param $node): string
+    {
+        if ($node->type === null) {
+            return '';
+        }
+
+        if ($node->type instanceof Node) {
+            $type = '<' . $this->nodeToCode($node->type, $this->finder) . '>';
+            return $type;
+        }
+
+        return $node->type;
     }
 }

@@ -35,4 +35,9 @@ class Test
     {
 
     }
+
+    public function noType($val)
+    {
+
+    }
 }

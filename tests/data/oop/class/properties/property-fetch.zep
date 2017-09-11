@@ -6,7 +6,7 @@ class Person
     private age = 21;
     public function get(string propName)
     {
-        this->{propName};
+        return this->{propName};
     }
     public function getName() -> string
     {

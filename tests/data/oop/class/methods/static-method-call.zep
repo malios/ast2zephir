@@ -5,7 +5,7 @@ use Malios\Di\Container;
 class Factory
 {
     private container;
-    public function __construct(Container container)
+    public function __construct(<Container> container)
     {
         let this->container = container;
     }

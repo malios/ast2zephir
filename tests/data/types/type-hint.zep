@@ -20,10 +20,13 @@ class Test
     {
         return first . second;
     }
-    public function setLogger(LoggerInterface logger) -> <self>
+    public function setLogger(<LoggerInterface> logger) -> <self>
     {
     }
     public function getLogger() -> <Psr\Log\LoggerInterface>
+    {
+    }
+    public function noType(val)
     {
     }
 }
