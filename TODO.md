@@ -11,18 +11,18 @@
 - ~~Expr_BinaryOp_ShiftRight (a >> b)~~
 
 #### Assign
-- Expr_AssignOp_BitwiseAnd (a &= b) ---> (a = a & b)
-- Expr_AssignOp_BitwiseOr (a |= b)
-- Expr_AssignOp_BitwiseXor (a ^= b)
-- Expr_AssignOp_Concat (a .= b)
-- Expr_AssignOp_Div (a /= b)
-- Expr_AssignOp_Minus (a -= b)
-- Expr_AssignOp_Mod (a %= b)
-- Expr_AssignOp_Mul (a *= b)
-- Expr_AssignOp_Plus (a += b) - test for arrays too
-- Expr_AssignOp_Pow (a *= b)
-- Expr_AssignOp_ShiftLeft (a <<= b)
-- Expr_AssignOp_ShiftRight (a >>= b)
+- ~~Expr_AssignOp_BitwiseAnd~~ (a &= b) ---> (a = a & b)
+- ~~Expr_AssignOp_BitwiseOr (a |= b)~~
+- ~~Expr_AssignOp_BitwiseXor (a ^= b)~~
+- ~~Expr_AssignOp_Concat (a .= b)~~
+- ~~Expr_AssignOp_Div (a /= b)~~
+- ~~Expr_AssignOp_Minus (a -= b)~~
+- ~~Expr_AssignOp_Mod (a %= b)~~
+- ~~Expr_AssignOp_Mul (a *= b)~~
+- ~~Expr_AssignOp_Plus (a += b)~~ - test for arrays too!!
+- ~~Expr_AssignOp_Pow (a *= b)~~
+- ~~Expr_AssignOp_ShiftLeft (a <<= b)~~
+- ~~Expr_AssignOp_ShiftRight (a >>= b)~~
 
 #### Types
 
@@ -40,7 +40,7 @@
 
 - ~~Support for inline html (workaround)~~
 - Support for traits (workaround)
-- String interpolation
+- ~~String interpolation~~
 
 
 #### conditional

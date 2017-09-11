@@ -37,6 +37,18 @@ abstract class Expr
     const BINARY_OP_LOGICAL_XOR = 'Expr_BinaryOp_LogicalXor';
     const BINARY_OP_SHIFT_LEFT = 'Expr_BinaryOp_ShiftLeft';
     const BINARY_OP_SHIFT_RIGHT = 'Expr_BinaryOp_ShiftRight';
+    const ASSIGN_OP = 'Expr_AssignOp_';
+    const ASSIGN_OP_CONCAT = 'Expr_AssignOp_Concat';
+    const ASSIGN_OP_PLUS = 'Expr_AssignOp_Plus';
+    const ASSIGN_OP_MINUS = 'Expr_AssignOp_Minus';
+    const ASSIGN_OP_DIV = 'Expr_AssignOp_Div';
+    const ASSIGN_OP_MUL = 'Expr_AssignOp_Mul';
+    const ASSIGN_OP_BITWISE_AND = 'Expr_AssignOp_BitwiseAnd';
+    const ASSIGN_OP_BITWISE_OR = 'Expr_AssignOp_BitwiseOr';
+    const ASSIGN_OP_BITWISE_XOR = 'Expr_AssignOp_BitwiseXor';
+    const ASSIGN_OP_BITWISE_MOD = 'Expr_AssignOp_Mod';
+    const ASSIGN_OP_SHIFT_LEFT = 'Expr_AssignOp_ShiftLeft';
+    const ASSIGN_OP_SHIFT_RIGHT = 'Expr_AssignOp_ShiftRight';
     const VARIABLE = 'Expr_Variable';
     const TERNARY = 'Expr_Ternary';
     const PRINT = 'Expr_Print';
@@ -61,4 +73,5 @@ abstract class Expr
     const CAST_DOUBLE = 'Expr_Cast_Double';
     const CAST_ARRAY = 'Expr_Cast_Array';
     const CAST_UNSET = 'Expr_Cast_Unset';
+    const CLONE = 'Expr_Clone';
 }

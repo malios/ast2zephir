@@ -8,10 +8,12 @@ use Malios\Ast2Zephir\Generator\Expr\Array_;
 use Malios\Ast2Zephir\Generator\Expr\ArrayDimFetch;
 use Malios\Ast2Zephir\Generator\Expr\ArrayItem;
 use Malios\Ast2Zephir\Generator\Expr\Assign;
+use Malios\Ast2Zephir\Generator\Expr\AssignOp;
 use Malios\Ast2Zephir\Generator\Expr\BinaryOp;
 use Malios\Ast2Zephir\Generator\Expr\BooleanNot;
 use Malios\Ast2Zephir\Generator\Expr\Cast;
 use Malios\Ast2Zephir\Generator\Expr\ClassConstFetch;
+use Malios\Ast2Zephir\Generator\Expr\Clone_;
 use Malios\Ast2Zephir\Generator\Expr\ConstFetch;
 use Malios\Ast2Zephir\Generator\Expr\Empty_;
 use Malios\Ast2Zephir\Generator\Expr\Eval_;
@@ -106,6 +108,17 @@ class Finder
         Expr::BINARY_OP_LOGICAL_XOR => BinaryOp::class,
         Expr::BINARY_OP_SHIFT_LEFT => BinaryOp::class,
         Expr::BINARY_OP_SHIFT_RIGHT => BinaryOp::class,
+        Expr::ASSIGN_OP_CONCAT => AssignOp::class,
+        Expr::ASSIGN_OP_PLUS => AssignOp::class,
+        Expr::ASSIGN_OP_MINUS => AssignOp::class,
+        Expr::ASSIGN_OP_DIV => AssignOp::class,
+        Expr::ASSIGN_OP_MUL => AssignOp::class,
+        Expr::ASSIGN_OP_BITWISE_AND => AssignOp::class,
+        Expr::ASSIGN_OP_BITWISE_OR => AssignOp::class,
+        Expr::ASSIGN_OP_BITWISE_XOR => AssignOp::class,
+        Expr::ASSIGN_OP_BITWISE_MOD => AssignOp::class,
+        Expr::ASSIGN_OP_SHIFT_LEFT => AssignOp::class,
+        Expr::ASSIGN_OP_SHIFT_RIGHT => AssignOp::class,
         Expr::VARIABLE => Variable::class,
         Expr::TERNARY => Ternary::class,
         Expr::PRINT => Print_::class,
@@ -129,6 +142,7 @@ class Finder
         Expr::CAST_DOUBLE => Cast::class,
         Expr::CAST_ARRAY => Cast::class,
         Expr::CAST_UNSET => Cast::class,
+        Expr::CLONE => Clone_::class,
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,
