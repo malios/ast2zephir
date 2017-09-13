@@ -2,7 +2,7 @@
 
 namespace Malios\Ast2Zephir\Generator;
 
-use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Enum\Expr;
 use Malios\Ast2Zephir\Generator\Exception\GeneratorNotFoundException;
 use Malios\Ast2Zephir\Generator\Expr\Array_;
 use Malios\Ast2Zephir\Generator\Expr\ArrayDimFetch;
@@ -65,9 +65,9 @@ use Malios\Ast2Zephir\Generator\Stmt\Use_;
 use Malios\Ast2Zephir\Generator\Stmt\UseUse;
 use Malios\Ast2Zephir\Generator\Stmt\While_;
 use Malios\Ast2Zephir\Logger\EchoLogger;
-use Malios\Ast2Zephir\Name as NameEnum;
-use Malios\Ast2Zephir\Scalar;
-use Malios\Ast2Zephir\Stmt;
+use Malios\Ast2Zephir\Enum\Name as NameEnum;
+use Malios\Ast2Zephir\Enum\Scalar;
+use Malios\Ast2Zephir\Enum\Stmt;
 use Psr\Log\LoggerInterface;
 
 class Finder
@@ -84,42 +84,42 @@ class Finder
         Expr::CLASS_CONST_FETCH => ClassConstFetch::class,
         Expr::PROPERTY_FETCH => PropertyFetch::class,
         Expr::STATIC_PROPERTY_FETCH => StaticPropertyFetch::class,
-        Expr::BINARY_OP_PLUS => BinaryOp::class,
-        Expr::BINARY_OP_MINUS => BinaryOp::class,
-        Expr::BINARY_OP_MULTIPLY => BinaryOp::class,
-        Expr::BINARY_OP_DIVIDE => BinaryOp::class,
-        Expr::BINARY_OP_EQUAL => BinaryOp::class,
-        Expr::BINARY_OP_NOT_EQUAL => BinaryOp::class,
-        Expr::BINARY_OP_IDENTICAL => BinaryOp::class,
-        Expr::BINARY_OP_NOT_IDENTICAL => BinaryOp::class,
-        Expr::BINARY_OP_CONCAT => BinaryOp::class,
-        Expr::BINARY_OP_GREATER => BinaryOp::class,
-        Expr::BINARY_OP_GREATER_OR_EQUAL => BinaryOp::class,
-        Expr::BINARY_OP_SMALLER => BinaryOp::class,
-        Expr::BINARY_OP_SMALLER_OR_EQUAL => BinaryOp::class,
-        Expr::BINARY_OP_POW => BinaryOp::class,
-        Expr::BINARY_OP_MODULUS => BinaryOp::class,
-        Expr::BINARY_OP_BITWISE_AND => BinaryOp::class,
-        Expr::BINARY_OP_BITWISE_OR => BinaryOp::class,
-        Expr::BINARY_OP_BITWISE_XOR => BinaryOp::class,
-        Expr::BINARY_OP_BOOLEAN_AND => BinaryOp::class,
-        Expr::BINARY_OP_BOOLEAN_OR => BinaryOp::class,
-        Expr::BINARY_OP_LOGICAL_AND => BinaryOp::class,
-        Expr::BINARY_OP_LOGICAL_OR => BinaryOp::class,
-        Expr::BINARY_OP_LOGICAL_XOR => BinaryOp::class,
-        Expr::BINARY_OP_SHIFT_LEFT => BinaryOp::class,
-        Expr::BINARY_OP_SHIFT_RIGHT => BinaryOp::class,
-        Expr::ASSIGN_OP_CONCAT => AssignOp::class,
-        Expr::ASSIGN_OP_PLUS => AssignOp::class,
-        Expr::ASSIGN_OP_MINUS => AssignOp::class,
-        Expr::ASSIGN_OP_DIV => AssignOp::class,
-        Expr::ASSIGN_OP_MUL => AssignOp::class,
-        Expr::ASSIGN_OP_BITWISE_AND => AssignOp::class,
-        Expr::ASSIGN_OP_BITWISE_OR => AssignOp::class,
-        Expr::ASSIGN_OP_BITWISE_XOR => AssignOp::class,
-        Expr::ASSIGN_OP_BITWISE_MOD => AssignOp::class,
-        Expr::ASSIGN_OP_SHIFT_LEFT => AssignOp::class,
-        Expr::ASSIGN_OP_SHIFT_RIGHT => AssignOp::class,
+        Expr\BinaryOp::PLUS => BinaryOp::class,
+        Expr\BinaryOp::MINUS => BinaryOp::class,
+        Expr\BinaryOp::MULTIPLY => BinaryOp::class,
+        Expr\BinaryOp::DIVIDE => BinaryOp::class,
+        Expr\BinaryOp::EQUAL => BinaryOp::class,
+        Expr\BinaryOp::NOT_EQUAL => BinaryOp::class,
+        Expr\BinaryOp::IDENTICAL => BinaryOp::class,
+        Expr\BinaryOp::NOT_IDENTICAL => BinaryOp::class,
+        Expr\BinaryOp::CONCAT => BinaryOp::class,
+        Expr\BinaryOp::GREATER => BinaryOp::class,
+        Expr\BinaryOp::GREATER_OR_EQUAL => BinaryOp::class,
+        Expr\BinaryOp::SMALLER => BinaryOp::class,
+        Expr\BinaryOp::SMALLER_OR_EQUAL => BinaryOp::class,
+        Expr\BinaryOp::POW => BinaryOp::class,
+        Expr\BinaryOp::MODULUS => BinaryOp::class,
+        Expr\BinaryOp::BITWISE_AND => BinaryOp::class,
+        Expr\BinaryOp::BITWISE_OR => BinaryOp::class,
+        Expr\BinaryOp::BITWISE_XOR => BinaryOp::class,
+        Expr\BinaryOp::BOOLEAN_AND => BinaryOp::class,
+        Expr\BinaryOp::BOOLEAN_OR => BinaryOp::class,
+        Expr\BinaryOp::LOGICAL_AND => BinaryOp::class,
+        Expr\BinaryOp::LOGICAL_OR => BinaryOp::class,
+        Expr\BinaryOp::LOGICAL_XOR => BinaryOp::class,
+        Expr\BinaryOp::SHIFT_LEFT => BinaryOp::class,
+        Expr\BinaryOp::SHIFT_RIGHT => BinaryOp::class,
+        Expr\AssignOp::CONCAT => AssignOp::class,
+        Expr\AssignOp::PLUS => AssignOp::class,
+        Expr\AssignOp::MINUS => AssignOp::class,
+        Expr\AssignOp::DIV => AssignOp::class,
+        Expr\AssignOp::MUL => AssignOp::class,
+        Expr\AssignOp::BITWISE_AND => AssignOp::class,
+        Expr\AssignOp::BITWISE_OR => AssignOp::class,
+        Expr\AssignOp::BITWISE_XOR => AssignOp::class,
+        Expr\AssignOp::BITWISE_MOD => AssignOp::class,
+        Expr\AssignOp::SHIFT_LEFT => AssignOp::class,
+        Expr\AssignOp::SHIFT_RIGHT => AssignOp::class,
         Expr::VARIABLE => Variable::class,
         Expr::TERNARY => Ternary::class,
         Expr::PRINT => Print_::class,
@@ -136,13 +136,13 @@ class Finder
         Expr::INSTANCEOF => Instanceof_::class,
         Expr::EVAL => Eval_::class,
         Expr::BOOLEAN_NOT => BooleanNot::class,
-        Expr::CAST_BOOL => Cast::class,
-        Expr::CAST_INT => Cast::class,
-        Expr::CAST_STRING => Cast::class,
-        Expr::CAST_OBJECT => Cast::class,
-        Expr::CAST_DOUBLE => Cast::class,
-        Expr::CAST_ARRAY => Cast::class,
-        Expr::CAST_UNSET => Cast::class,
+        Expr\Cast::BOOL => Cast::class,
+        Expr\Cast::INT => Cast::class,
+        Expr\Cast::STRING => Cast::class,
+        Expr\Cast::OBJECT => Cast::class,
+        Expr\Cast::DOUBLE => Cast::class,
+        Expr\Cast::ARRAY => Cast::class,
+        Expr\Cast::UNSET => Cast::class,
         Expr::CLONE => Clone_::class,
         Expr::LIST => List_::class,
         Scalar::LNUMBER => LNumber::class,

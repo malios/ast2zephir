@@ -4,7 +4,7 @@ namespace Malios\Ast2Zephir\Generator\Scalar;
 
 use Malios\Ast2Zephir\Generator\Common\NodeToCode;
 use Malios\Ast2Zephir\Generator\Generator;
-use Malios\Ast2Zephir\Scalar;
+use Malios\Ast2Zephir\Enum\Scalar;
 use PhpParser\Node;
 
 final class Encapsed extends Generator

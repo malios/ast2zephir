@@ -2,7 +2,7 @@
 
 namespace Malios\Ast2Zephir\Generator\Expr;
 
-use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Enum\Expr;
 use Malios\Ast2Zephir\Generator\Exception\GeneratorException;
 use Malios\Ast2Zephir\Generator\Generator;
 use PhpParser\Node;
@@ -51,40 +51,40 @@ final class BinaryOp extends Generator
 
     private function isBinary(Node $node): bool
     {
-        return strpos($node->getType(), Expr::BINARY_OP) > -1;
+        return strpos($node->getType(), Expr\BinaryOp::BINARY_OP) > -1;
     }
 
     private function getOperator(Node\Expr\BinaryOp $node): string
     {
         $operators = [
-            Expr::BINARY_OP_PLUS => '+',
-            Expr::BINARY_OP_MINUS => '-',
-            Expr::BINARY_OP_MULTIPLY => '*',
-            Expr::BINARY_OP_DIVIDE => '/',
-            Expr::BINARY_OP_EQUAL => '==',
-            Expr::BINARY_OP_NOT_EQUAL => '!=',
-            Expr::BINARY_OP_IDENTICAL => '===',
-            Expr::BINARY_OP_NOT_IDENTICAL => '!==',
-            Expr::BINARY_OP_CONCAT => '.',
-            Expr::BINARY_OP_GREATER => '>',
-            Expr::BINARY_OP_GREATER_OR_EQUAL => '>=',
-            Expr::BINARY_OP_SMALLER => '<',
-            Expr::BINARY_OP_SMALLER_OR_EQUAL => '<=',
-            Expr::BINARY_OP_MODULUS => '%',
-            Expr::BINARY_OP_BITWISE_AND => '&',
-            Expr::BINARY_OP_BITWISE_OR => '|',
-            Expr::BINARY_OP_BITWISE_XOR => '^',
-            Expr::BINARY_OP_BOOLEAN_AND => '&&',
-            Expr::BINARY_OP_BOOLEAN_OR => '||',
-            Expr::BINARY_OP_LOGICAL_AND => '&&', // todo: add notice for usage of logical and, or, xor
-            Expr::BINARY_OP_LOGICAL_OR => '||',
-            Expr::BINARY_OP_LOGICAL_XOR => '^',
-            Expr::BINARY_OP_SHIFT_LEFT => '<<',
-            Expr::BINARY_OP_SHIFT_RIGHT => '>>',
+            Expr\BinaryOp::PLUS => '+',
+            Expr\BinaryOp::MINUS => '-',
+            Expr\BinaryOp::MULTIPLY => '*',
+            Expr\BinaryOp::DIVIDE => '/',
+            Expr\BinaryOp::EQUAL => '==',
+            Expr\BinaryOp::NOT_EQUAL => '!=',
+            Expr\BinaryOp::IDENTICAL => '===',
+            Expr\BinaryOp::NOT_IDENTICAL => '!==',
+            Expr\BinaryOp::CONCAT => '.',
+            Expr\BinaryOp::GREATER => '>',
+            Expr\BinaryOp::GREATER_OR_EQUAL => '>=',
+            Expr\BinaryOp::SMALLER => '<',
+            Expr\BinaryOp::SMALLER_OR_EQUAL => '<=',
+            Expr\BinaryOp::MODULUS => '%',
+            Expr\BinaryOp::BITWISE_AND => '&',
+            Expr\BinaryOp::BITWISE_OR => '|',
+            Expr\BinaryOp::BITWISE_XOR => '^',
+            Expr\BinaryOp::BOOLEAN_AND => '&&',
+            Expr\BinaryOp::BOOLEAN_OR => '||',
+            Expr\BinaryOp::LOGICAL_AND => '&&', // todo: add notice for usage of logical and, or, xor
+            Expr\BinaryOp::LOGICAL_OR => '||',
+            Expr\BinaryOp::LOGICAL_XOR => '^',
+            Expr\BinaryOp::SHIFT_LEFT => '<<',
+            Expr\BinaryOp::SHIFT_RIGHT => '>>',
         ];
 
         $notAvailableOperators = [
-            Expr::BINARY_OP_POW => self::NOT_AVAILABLE
+            Expr\BinaryOp::POW => self::NOT_AVAILABLE
         ];
 
         $operator = $operators[$node->getType()] ?? $notAvailableOperators[$node->getType()] ?? '';
@@ -101,7 +101,7 @@ final class BinaryOp extends Generator
     private function parseAlternative(Node\Expr\BinaryOp $node, string $left, string $right): string
     {
         switch ($node->getType()) {
-            case Expr::BINARY_OP_POW:
+            case Expr\BinaryOp::POW:
                 $code = sprintf('pow(%s, %s)', $left, $right);
                 break;
             default:
@@ -120,7 +120,7 @@ final class BinaryOp extends Generator
     private function generateNext(Node $node): string
     {
         $generator = $this->finder->find($node->getType());
-        if ($this->isBinary($node) && $node->getType() !== Expr::BINARY_OP_CONCAT) {
+        if ($this->isBinary($node) && $node->getType() !== Expr\BinaryOp::CONCAT) {
             $generator->addConfig('parentheses', true);
         }
         $next = $generator->generateCode($node);

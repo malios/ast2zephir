@@ -3,7 +3,7 @@
 namespace Malios\Ast2Zephir\Generator\Common;
 
 use Malios\Ast2Zephir\Generator\Finder;
-use Malios\Ast2Zephir\Stmt;
+use Malios\Ast2Zephir\Enum\Stmt;
 use PhpParser\Node;
 
 trait ParseStatements

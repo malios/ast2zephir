@@ -2,7 +2,7 @@
 
 namespace Malios\Ast2Zephir\Generator\Expr;
 
-use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Enum\Expr;
 use Malios\Ast2Zephir\Generator\Common\Arguments;
 use Malios\Ast2Zephir\Generator\Generator;
 use PhpParser\Node;

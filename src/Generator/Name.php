@@ -2,7 +2,7 @@
 
 namespace Malios\Ast2Zephir\Generator;
 
-use Malios\Ast2Zephir\Name as NameEnum;
+use Malios\Ast2Zephir\Enum\Name as NameEnum;
 use PhpParser\Node;
 
 final class Name extends Generator

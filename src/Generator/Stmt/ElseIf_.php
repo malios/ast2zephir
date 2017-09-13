@@ -4,7 +4,7 @@ namespace Malios\Ast2Zephir\Generator\Stmt;
 
 use Malios\Ast2Zephir\Generator\Generator;
 use Malios\Ast2Zephir\Generator\Common\ParseStatements;
-use Malios\Ast2Zephir\Stmt;
+use Malios\Ast2Zephir\Enum\Stmt;
 use PhpParser\Node;
 
 final class ElseIf_ extends Generator

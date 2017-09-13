@@ -2,14 +2,14 @@
 
 namespace Malios\Ast2Zephir\Generator\Stmt;
 
-use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Enum\Expr;
 use Malios\Ast2Zephir\Generator\Common\NodeToCode;
 use Malios\Ast2Zephir\Generator\Common\Parameters;
 use Malios\Ast2Zephir\Generator\Generator;
 use Malios\Ast2Zephir\Generator\Common\Modifiers;
 use Malios\Ast2Zephir\Generator\Common\ParseStatements;
 use Malios\Ast2Zephir\Generator\Common\ReturnType;
-use Malios\Ast2Zephir\Stmt;
+use Malios\Ast2Zephir\Enum\Stmt;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Assign;
 

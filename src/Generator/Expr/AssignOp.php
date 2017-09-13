@@ -2,7 +2,7 @@
 
 namespace Malios\Ast2Zephir\Generator\Expr;
 
-use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Enum\Expr;
 use Malios\Ast2Zephir\Generator\Common\NodeToCode;
 use Malios\Ast2Zephir\Generator\Exception\GeneratorException;
 use Malios\Ast2Zephir\Generator\Generator;
@@ -22,17 +22,17 @@ final class AssignOp extends Generator
     private $template = 'let %s = %s %s %s';
 
     private $operators = [
-        Expr::ASSIGN_OP_CONCAT => '.',
-        Expr::ASSIGN_OP_PLUS => '+',
-        Expr::ASSIGN_OP_MINUS => '-',
-        Expr::ASSIGN_OP_DIV => '/',
-        Expr::ASSIGN_OP_MUL => '*',
-        Expr::ASSIGN_OP_BITWISE_AND => '&',
-        Expr::ASSIGN_OP_BITWISE_OR => '|',
-        Expr::ASSIGN_OP_BITWISE_XOR => '^',
-        Expr::ASSIGN_OP_BITWISE_MOD => '%',
-        Expr::ASSIGN_OP_SHIFT_LEFT => '<<',
-        Expr::ASSIGN_OP_SHIFT_RIGHT => '>>',
+        Expr\AssignOp::CONCAT => '.',
+        Expr\AssignOp::PLUS => '+',
+        Expr\AssignOp::MINUS => '-',
+        Expr\AssignOp::DIV => '/',
+        Expr\AssignOp::MUL => '*',
+        Expr\AssignOp::BITWISE_AND => '&',
+        Expr\AssignOp::BITWISE_OR => '|',
+        Expr\AssignOp::BITWISE_XOR => '^',
+        Expr\AssignOp::BITWISE_MOD => '%',
+        Expr\AssignOp::SHIFT_LEFT => '<<',
+        Expr\AssignOp::SHIFT_RIGHT => '>>',
     ];
 
     /**
@@ -65,6 +65,6 @@ final class AssignOp extends Generator
 
     private function isAssignOp(Node $node): bool
     {
-        return strpos($node->getType(), Expr::ASSIGN_OP) > -1;
+        return strpos($node->getType(), Expr\AssignOp::ASSIGN_OP) > -1;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Malios\Ast2Zephir\Generator\Expr;
 
-use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Enum\Expr;
 use Malios\Ast2Zephir\Generator\Common\NodeToCode;
 use Malios\Ast2Zephir\Generator\Exception\LogicException;
 use Malios\Ast2Zephir\Generator\Generator;
@@ -17,12 +17,12 @@ final class Cast extends Generator
     private $template = '(%s) %s';
 
     private $castMapping = [
-        Expr::CAST_BOOL => 'bool',
-        Expr::CAST_INT => 'int',
-        Expr::CAST_STRING => 'string',
-        Expr::CAST_OBJECT => 'object',
-        Expr::CAST_DOUBLE => 'double',
-        Expr::CAST_ARRAY => 'array',
+        Expr\Cast::BOOL => 'bool',
+        Expr\Cast::INT => 'int',
+        Expr\Cast::STRING => 'string',
+        Expr\Cast::OBJECT => 'object',
+        Expr\Cast::DOUBLE => 'double',
+        Expr\Cast::ARRAY => 'array',
     ];
 
     /**
@@ -42,7 +42,7 @@ final class Cast extends Generator
     protected function doGenerateCode($node): string
     {
         $type = $node->getType();
-        if ($type === Expr::CAST_UNSET) {
+        if ($type === Expr\Cast::UNSET) {
             $code = $this->convertCastUnset($node);
             return $code;
         }
@@ -59,7 +59,7 @@ final class Cast extends Generator
 
     private function isCast(Node $node): bool
     {
-        return strpos($node->getType(), Expr::CAST) > -1;
+        return strpos($node->getType(), Expr\Cast::CAST) > -1;
     }
 
     private function convertCastUnset(Node\Expr\Cast\Unset_ $node): string

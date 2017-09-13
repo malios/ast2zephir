@@ -4,7 +4,7 @@ namespace Malios\Ast2Zephir\Generator\Stmt;
 
 use Malios\Ast2Zephir\Generator\Generator;
 use Malios\Ast2Zephir\Generator\Common\Modifiers;
-use Malios\Ast2Zephir\Stmt;
+use Malios\Ast2Zephir\Enum\Stmt;
 use PhpParser\Node;
 
 final class Class_ extends Generator

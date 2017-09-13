@@ -2,7 +2,7 @@
 
 namespace Malios\Ast2Zephir\Generator\Common;
 
-use Malios\Ast2Zephir\Expr;
+use Malios\Ast2Zephir\Enum\Expr;
 use Malios\Ast2Zephir\Generator\Expr\New_;
 use Malios\Ast2Zephir\Generator\Expr\StaticCall;
 use Malios\Ast2Zephir\Generator\Finder;

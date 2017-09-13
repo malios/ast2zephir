@@ -5,7 +5,7 @@ namespace Malios\Ast2Zephir\Generator\Stmt;
 use Malios\Ast2Zephir\Generator\Common\NodeToCode;
 use Malios\Ast2Zephir\Generator\Common\ParseStatements;
 use Malios\Ast2Zephir\Generator\Generator;
-use Malios\Ast2Zephir\Stmt;
+use Malios\Ast2Zephir\Enum\Stmt;
 use PhpParser\Node;
 
 final class Catch_ extends Generator
