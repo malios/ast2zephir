@@ -2,7 +2,7 @@
 
 namespace Malios\Ast2Zephir\Test;
 
-use Malios\Ast2Zephir\Generator\Finder;
+use Malios\Ast2Zephir\Generator\FinderFactory;
 use Malios\Ast2Zephir\Transformer;
 use PhpParser\Parser;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +26,7 @@ class GeneratorTest extends TestCase
     {
         parent::setUp();
         $this->astParser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
-        $finder = new Finder();
+        $finder =  (new FinderFactory())->create();
         $this->transformer = new Transformer($finder);
     }
 
