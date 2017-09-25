@@ -31,6 +31,8 @@ use Malios\Ast2Zephir\Generator\Expr\PropertyFetch;
 use Malios\Ast2Zephir\Generator\Expr\StaticCall;
 use Malios\Ast2Zephir\Generator\Expr\StaticPropertyFetch;
 use Malios\Ast2Zephir\Generator\Expr\Ternary;
+use Malios\Ast2Zephir\Generator\Expr\UnaryMinus;
+use Malios\Ast2Zephir\Generator\Expr\UnaryPlus;
 use Malios\Ast2Zephir\Generator\Expr\Variable;
 use Malios\Ast2Zephir\Generator\Scalar\DNumber;
 use Malios\Ast2Zephir\Generator\Scalar\Encapsed;
@@ -145,6 +147,8 @@ class Finder
         Expr\Cast::UNSET => Cast::class,
         Expr::CLONE => Clone_::class,
         Expr::LIST => List_::class,
+        Expr::UNARY_MINUS => UnaryMinus::class,
+        Expr::UNARY_PLUS => UnaryPlus::class,
         Scalar::LNUMBER => LNumber::class,
         Scalar::DNUMBER => DNumber::class,
         Scalar::STRING => String_::class,

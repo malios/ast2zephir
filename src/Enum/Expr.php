@@ -29,4 +29,6 @@ abstract class Expr
     const BOOLEAN_NOT = 'Expr_BooleanNot';
     const CLONE = 'Expr_Clone';
     const LIST = 'Expr_List';
+    const UNARY_MINUS = 'Expr_UnaryMinus';
+    const UNARY_PLUS = 'Expr_UnaryPlus';
 }
