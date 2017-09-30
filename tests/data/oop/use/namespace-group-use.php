@@ -6,3 +6,7 @@ use PhpParser\Node\Expr\{
     Cast
 };
 use SebastianBergmann\Diff;
+
+class Test
+{
+}

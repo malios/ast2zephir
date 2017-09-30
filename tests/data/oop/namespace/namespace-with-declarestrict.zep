@@ -1,2 +1,5 @@
 namespace Malios;
 
+class Test
+{
+}
