@@ -1,5 +1,7 @@
 <?php
 
+namespace Malios;
+
 class Person
 {
     private $name, $age;

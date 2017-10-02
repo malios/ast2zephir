@@ -1,3 +1,5 @@
+namespace Malios;
+
 class Person
 {
     private name;
