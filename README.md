@@ -1,7 +1,8 @@
 # ast2zephir
 Generate Zephir code from PHP Abstract Syntax Tree (AST).
 
-## This project is work in progress
+## On hold
+For now there isn't much benefit in transpiling PHP code into Zephi. Also Zephir is pretty unstable in this stage. Will wait until stable release.
 
 ## Getting Started
 ### Prerequisites
